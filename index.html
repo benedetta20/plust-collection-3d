@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PLUST Collection — Design per esterni made in Italy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;800&family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#000000; --muted:#595959; --line:#DADADA; --grey:#F0F0F0; --lime:#DCED3B; --dark:#111213; --on-dark:#F2F2F2; --veil:rgba(255,255,255,.94);
+  --pad:clamp(1.25rem,4.5vw,4rem); --gap:clamp(1rem,2vw,2rem);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#161616; --ink:#F2F2F2; --muted:#A8A8A8; --line:#333; --grey:#202020; --dark:#0B0B0C; --veil:rgba(22,22,22,.94); color-scheme:dark; }
+}
+:root[data-theme="dark"]{ --bg:#161616; --ink:#F2F2F2; --muted:#A8A8A8; --line:#333; --grey:#202020; --dark:#0B0B0C; --veil:rgba(22,22,22,.94); color-scheme:dark; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 100px)}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; font-size:1rem; line-height:1.65; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:30; background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lime); outline-offset:3px; box-shadow:0 0 0 5px #000}
+[hidden]{display:none !important}
+img{max-width:100%}
+
+#gl{position:fixed; left:0; right:0; bottom:0; top:var(--navh,92px); width:100%; height:calc(100% - var(--navh,92px)); display:block; z-index:5; pointer-events:none}
+.container{max-width:1440px; margin:0 auto; padding:0 var(--pad)}
+
+/* ---------- Header ---------- */
+.nav{position:fixed; top:env(safe-area-inset-top,0px); left:0; right:0; z-index:20; background:var(--bg); border-bottom:1px solid transparent; transition:border-color .2s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav-in{display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; padding-top:1rem; padding-bottom:.9rem}
+.logo{display:inline-flex; flex-direction:column; text-decoration:none; line-height:1}
+.logo .w{font-family:"Dosis",sans-serif; font-weight:800; font-size:2.5rem; letter-spacing:-.02em; line-height:.8; display:flex; align-items:flex-start}
+.logo .plus{position:relative; width:.5em; height:.62em; margin-left:.02em; margin-top:-.08em}
+.logo .plus::before,.logo .plus::after{content:""; position:absolute; background:var(--lime)}
+.logo .plus::before{left:50%; top:0; bottom:0; width:.15em; transform:translateX(-50%)}
+.logo .plus::after{top:32%; left:0; right:0; height:.15em}
+.logo small{font-family:"Dosis",sans-serif; font-weight:800; font-size:.64rem; letter-spacing:.12em; margin-top:.38rem; padding-left:1.1rem}
+.menu{display:flex; flex-direction:column; align-items:flex-end; gap:.45rem}
+.lang{font-family:"Dosis",sans-serif; font-size:.85rem; color:var(--muted)}
+.lang a{text-decoration:none}
+.lang b{color:var(--ink); font-weight:500; text-decoration:underline; text-underline-offset:3px}
+.menu ul{list-style:none; display:flex; gap:clamp(.9rem,1.8vw,1.8rem); margin:0; padding:0; font-family:"Dosis",sans-serif; font-weight:500; font-size:1.05rem}
+.menu ul a{text-decoration:none; padding:.2rem 0; border-bottom:2px solid transparent}
+.menu ul a:hover,.menu ul a[aria-current="page"]{border-bottom-color:var(--lime)}
+.ext::after{content:"↗"; font-size:.75em; margin-left:.25em; color:var(--muted)}
+.burger{display:none; width:48px; height:48px; border:0; background:none; color:var(--ink); cursor:pointer; position:relative}
+.burger span,.burger::before,.burger::after{content:""; position:absolute; left:12px; right:12px; height:2px; background:currentColor; transition:transform .25s,opacity .25s}
+.burger::before{top:16px} .burger span{top:23px} .burger::after{top:30px}
+.nav.open .burger::before{transform:translateY(7px) rotate(45deg)} .nav.open .burger span{opacity:0} .nav.open .burger::after{transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:1100px){
+  .logo .w{font-size:2.1rem}
+  .burger{display:block}
+  .nav-in{align-items:center}
+  .menu{position:fixed; inset:calc(env(safe-area-inset-top,0px) + 76px) 0 0; background:var(--bg); padding:1.5rem var(--pad) calc(2rem + env(safe-area-inset-bottom,0px)); align-items:flex-start; justify-content:flex-start; flex-direction:column-reverse; gap:2rem; overflow:auto; display:none; z-index:25}
+  .nav.open .menu{display:flex}
+  .menu ul{flex-direction:column; gap:0; font-size:1.6rem; width:100%}
+  .menu ul a{display:block; padding:.7rem 0; border-bottom:1px solid var(--line)}
+}
+
+/* ---------- Type ---------- */
+main{padding-top:calc(env(safe-area-inset-top,0px) + 92px)}
+h1{font-weight:900; text-transform:uppercase; font-size:clamp(2.6rem,5.4vw,5.2rem); line-height:.95; letter-spacing:-.01em; margin:0 0 1.3rem}
+h2{font-weight:300; text-transform:uppercase; font-size:clamp(1.9rem,3.3vw,3.1rem); line-height:1.04; letter-spacing:.01em; margin:0 0 1.3rem}
+h1 strong,h2 strong{font-weight:900; display:block}
+h1 .lt{font-weight:300; display:block}
+h3{font-size:1rem; font-weight:700; text-transform:uppercase; letter-spacing:.02em; margin:0 0 .45rem; line-height:1.3}
+p{margin:0 0 1rem; max-width:60ch}
+.lead{font-size:1.1rem; line-height:1.6}
+.muted{color:var(--muted)}
+.rule{width:3.2rem; height:6px; background:var(--lime); margin:0 0 1.4rem}
+.crumb{font-size:.82rem; color:var(--muted); margin-bottom:1rem}
+.crumb a{text-decoration:none} .crumb a:hover{text-decoration:underline}
+.btn{display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 1.4rem; font:inherit; font-size:.9rem; font-weight:500; text-transform:uppercase; letter-spacing:.04em; text-decoration:none; cursor:pointer; border:1.5px solid currentColor; background:transparent; color:inherit; transition:background .2s,color .2s,border-color .2s}
+.btn:hover{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.btn.lime{background:var(--lime); color:#000; border-color:var(--lime)}
+.btn.lime:hover{background:#000; color:#fff; border-color:#000}
+.dark .btn:hover,.on-img .btn:hover{background:#fff; color:#000; border-color:#fff}
+.dark .btn.lime:hover{background:#fff; color:#000; border-color:#fff}
+.actions{display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.8rem}
+.more{display:inline-flex; align-items:center; gap:.55rem; font-size:.85rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; text-decoration:none}
+.more::before{content:""; width:18px; height:5px; background:var(--lime); transition:width .25s}
+a:hover .more::before,.more:hover::before{width:30px}
+
+/* ---------- Bands ---------- */
+.band{padding:clamp(4rem,7vw,6.5rem) 0}
+.band.grey{background:var(--grey)}
+.band.dark{background:var(--dark); color:var(--on-dark)}
+.band.dark .muted{color:#A9A9A9}
+.band.lime{background:var(--lime); color:#000}
+.head{display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); align-items:end; margin-bottom:clamp(2rem,4vw,3rem)}
+.head h2{margin:0}
+.head p{margin:0}
+@media (max-width:900px){ .head{grid-template-columns:1fr} }
+.two{display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,4vw,4rem); align-items:center}
+@media (max-width:900px){ .two{grid-template-columns:1fr} }
+
+/* ---------- Stages ---------- */
+.stage3d{position:relative; background:var(--sbg,#EFEFED); overflow:hidden; touch-action:pan-y}
+.stage3d[data-drag]{cursor:grab}
+.stage3d[data-drag]:active{cursor:grabbing}
+.stage-tools{position:absolute; right:1rem; bottom:1rem; display:flex; gap:.4rem; align-items:center; z-index:6; font-size:.75rem; text-transform:uppercase; letter-spacing:.05em; color:#333}
+.stage-tools button{width:42px; height:42px; border:1.5px solid #000; background:rgba(255,255,255,.85); color:#000; font:inherit; font-size:1.1rem; cursor:pointer}
+.stage-tools button:hover{background:var(--lime); border-color:var(--lime)}
+.stage-hint{position:absolute; left:1rem; bottom:1.1rem; z-index:6; font-size:.75rem; color:#444; text-transform:uppercase; letter-spacing:.05em}
+
+/* Hero */
+.hero-scroll{position:relative; height:420vh}
+.hero-sticky{position:sticky; top:var(--navh,92px); z-index:6}
+.hero-stage.stage3d{background:transparent}
+.no-webgl .hero-stage.stage3d{background:#E3DDD3}
+.hero-stage{height:calc(100svh - var(--navh,92px) - 1.25rem); min-height:520px; --sbg:#E3DDD3}
+.hero-copy{position:absolute; z-index:6; left:clamp(1.4rem,4vw,3.5rem); top:clamp(1.8rem,5vw,4rem); max-width:30rem; color:#111; will-change:transform,opacity}
+.hero-copy h1{color:#000; font-weight:800; font-size:clamp(2.3rem,4.4vw,4.2rem); margin-bottom:1.1rem}
+.hero-copy h1 .lt{font-weight:300}
+.hero-copy p{font-size:clamp(1rem,1.2vw,1.1rem); max-width:36ch; color:#333}
+.hero-copy .btn:not(.lime){color:#000}
+.hero-copy .btn:not(.lime):hover{color:#fff; background:#000}
+@keyframes rise{from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:none}}
+@keyframes grow{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+.hero-copy h1{animation:rise 1s cubic-bezier(.2,.7,.2,1) both .2s}
+.hero-copy .rule{margin-bottom:1.2rem; transform-origin:left; animation:grow .9s cubic-bezier(.2,.7,.2,1) both .7s}
+.hero-copy p{animation:rise 1s cubic-bezier(.2,.7,.2,1) both .85s}
+.hero-copy .actions{animation:rise 1s cubic-bezier(.2,.7,.2,1) both 1s}
+.hero-caps{position:absolute; z-index:6; left:clamp(1.4rem,4vw,3.5rem); bottom:clamp(2.6rem,6vw,4.5rem); width:min(26rem, calc(100% - 2.8rem)); color:#111; pointer-events:none}
+.cap{position:absolute; left:0; bottom:0; width:100%; opacity:0; visibility:hidden; transform:translateY(30px); transition:opacity .6s, transform .8s cubic-bezier(.2,.7,.2,1), visibility 0s .6s}
+.cap.on{opacity:1; visibility:visible; transform:none; pointer-events:auto; transition:opacity .6s, transform .8s cubic-bezier(.2,.7,.2,1)}
+.cap .k{display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.1em; background:#000; color:var(--lime); padding:.2rem .5rem; margin-bottom:1rem}
+.cap h2{font-size:clamp(1.8rem,3vw,2.8rem); margin-bottom:.8rem}
+.cap p{color:#333; margin:0 0 1rem}
+.hs{position:absolute; z-index:6; left:0; top:0; display:flex; align-items:center; gap:.6rem; opacity:0; pointer-events:none; font-size:.8rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; color:#111; white-space:nowrap}
+.hs i{position:relative; flex:none; width:14px; height:14px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 6px rgba(220,237,59,.35)}
+.hs i::after{content:""; position:absolute; inset:-6px; border-radius:50%; border:1.5px solid #000; animation:ping 1.8s ease-out infinite}
+@keyframes ping{from{transform:scale(.6); opacity:1} to{transform:scale(1.9); opacity:0}}
+.hs span{background:rgba(255,255,255,.9); padding:.35rem .6rem; border-left:3px solid var(--lime)}
+.hero-progress{position:absolute; z-index:6; left:0; right:0; bottom:0; height:4px; background:rgba(0,0,0,.08)}
+.hero-progress i{display:block; height:100%; width:100%; background:var(--lime); transform-origin:left; transform:scaleX(0)}
+.scroll-cue{position:absolute; z-index:6; right:clamp(1.4rem,4vw,3.5rem); bottom:1.6rem; color:#333; font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; display:flex; align-items:center; gap:.6rem; transition:opacity .4s}
+.scroll-cue::before{content:""; width:2px; height:2.2rem; background:var(--lime); transform-origin:top; animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0)} 50%{transform:scaleY(1)} 100%{transform:scaleY(1); opacity:0}}
+@media (prefers-reduced-motion:reduce){ .hero-copy *, .scroll-cue::before, .hs i::after{animation:none !important} }
+@media (max-width:700px){ .hero-stage{min-height:560px} .scroll-cue{display:none} .hero-copy{right:1.2rem} .hs span{display:none} .hero-caps{bottom:1.6rem} .cap p{font-size:.92rem} }
+
+/* Marquee */
+.marquee{overflow:hidden; background:var(--dark); color:#fff; padding:clamp(1.2rem,2.5vw,2rem) 0}
+.mq-track{display:flex; width:max-content; gap:clamp(1.5rem,3vw,3rem); align-items:center; font-size:clamp(2.2rem,5.5vw,5rem); font-weight:900; text-transform:uppercase; white-space:nowrap; line-height:1.05; will-change:transform}
+.mq-track .o{color:transparent; -webkit-text-stroke:1.5px #fff}
+.mq-plus{position:relative; width:.55em; height:.55em; flex:none}
+.mq-plus::before,.mq-plus::after{content:""; position:absolute; background:var(--lime)}
+.mq-plus::before{left:50%; top:0; bottom:0; width:.15em; transform:translateX(-50%)}
+.mq-plus::after{top:50%; left:0; right:0; height:.15em; transform:translateY(-50%)}
+
+/* Page wipe */
+.wipe{position:fixed; inset:0; z-index:60; background:var(--lime); color:#000; display:flex; align-items:center; justify-content:center; transform:translateY(101%); pointer-events:none}
+.wipe .logo .w{font-size:clamp(3rem,8vw,6rem)}
+.wipe .logo small{font-size:clamp(.8rem,1.4vw,1.1rem); padding-left:2.4rem}
+.wipe .plus::before,.wipe .plus::after{background:#000 !important}
+
+/* Reveal */
+.rv{opacity:0; transform:translateY(38px); transition:opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.rv-move{opacity:1; transform:translateY(80px)}
+.rv.in{opacity:1; transform:none}
+.cat:hover{transform:translateY(-6px)}
+.cat{transition:border-color .2s, transform .5s cubic-bezier(.2,.7,.2,1)}
+
+/* Intro */
+.intro{display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(2rem,5vw,5rem); align-items:start}
+.facts{display:grid; grid-template-columns:repeat(4,1fr); border-top:1.5px solid var(--ink); margin-top:clamp(2.5rem,5vw,4rem)}
+.facts div{padding:1.4rem 1.2rem 0 0}
+.facts div + div{border-left:1px solid var(--line); padding-left:1.2rem}
+.facts b{display:block; font-weight:900; font-size:clamp(2rem,3.4vw,3.1rem); line-height:1}
+.facts span{display:block; margin-top:.6rem; color:var(--muted); font-size:.9rem; max-width:24ch}
+@media (max-width:900px){ .intro{grid-template-columns:1fr} .facts{grid-template-columns:1fr 1fr} .facts div:nth-child(3){border-left:0; padding-left:0} .facts div{padding-bottom:1.4rem} }
+
+/* Categories */
+.cats{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap)}
+.cat{display:flex; flex-direction:column; text-decoration:none; background:var(--bg); border:1px solid var(--line); transition:border-color .2s}
+.cat:hover{border-color:var(--ink)}
+.cat .stage3d{aspect-ratio:4/3}
+.cat-b{padding:1.2rem 1.3rem 1.4rem; display:flex; flex-direction:column; gap:.3rem; flex:1}
+.cat-b p{color:var(--muted); font-size:.92rem; margin:0 0 .8rem}
+.cat-b .more{margin-top:auto}
+@media (max-width:1000px){ .cats{grid-template-columns:1fr 1fr} }
+@media (max-width:620px){ .cats{grid-template-columns:1fr} }
+
+/* Process */
+.process{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(2rem,4vw,4rem); align-items:center}
+.process .stage3d{aspect-ratio:5/4; --sbg:#1B1C1E}
+.steps{list-style:none; margin:2rem 0 0; padding:0; border-top:1px solid #333}
+.steps button{display:grid; grid-template-columns:3rem 1fr; gap:.8rem; width:100%; text-align:left; padding:1.1rem 0; border:0; border-bottom:1px solid #333; background:none; color:inherit; font:inherit; cursor:pointer; opacity:.55; transition:opacity .25s}
+.steps button[aria-current="step"],.steps button:hover{opacity:1}
+.steps b{font-weight:900; font-size:1.3rem; line-height:1.3}
+.steps button[aria-current="step"] b{color:var(--lime)}
+.steps strong{display:block; text-transform:uppercase; font-size:.95rem}
+.steps span span{display:block; font-size:.9rem; color:#BDBDBD; margin-top:.25rem}
+.benefits{display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; padding:0; margin:1.8rem 0 0}
+.benefits li{border:1px solid var(--lime); padding:.45rem .9rem; font-size:.85rem}
+@media (max-width:900px){ .process{grid-template-columns:1fr} }
+
+/* Sectors */
+.sectors{display:grid; grid-template-columns:1.2fr 1fr; gap:clamp(2rem,4vw,4rem); align-items:stretch}
+.sectors .stage3d{min-height:520px}
+.sec-list{list-style:none; margin:0; padding:0}
+.sec-list li{padding:1.2rem 0; border-bottom:1px solid var(--line); display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start}
+.sec-list li::before{content:""; width:14px; height:14px; background:var(--lime); margin-top:.3rem}
+.sec-list p{margin:0; color:var(--muted); font-size:.93rem}
+@media (max-width:900px){ .sectors{grid-template-columns:1fr} .sectors .stage3d{min-height:380px} }
+
+/* Family cards */
+.fams{display:grid; grid-template-columns:repeat(4,1fr); gap:var(--gap)}
+.fam-card{position:relative; display:block; text-decoration:none; color:#000}
+.fam-card .stage3d{aspect-ratio:3/4}
+.fam-card .t{position:absolute; z-index:6; top:1.2rem; left:1.3rem; right:1.3rem; font-weight:300; text-transform:uppercase; font-size:clamp(1.6rem,2.3vw,2.3rem); line-height:1}
+.fam-card .d{position:absolute; z-index:6; top:calc(1.2rem + clamp(1.6rem,2.3vw,2.3rem) + .5rem); left:1.3rem; font-size:.8rem; color:#333}
+.fam-card .btn{position:absolute; z-index:6; left:1.2rem; bottom:1.2rem; min-height:42px}
+.fam-card:hover .btn{background:#000; color:#fff; border-color:#000}
+.badge{position:absolute; z-index:6; right:1.2rem; top:1.3rem; background:#000; color:var(--lime); font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:.25rem .55rem}
+@media (max-width:1100px){ .fams{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .fams{grid-template-columns:1fr} .fam-card .stage3d{aspect-ratio:4/3} }
+
+/* Designers */
+.designers{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.2rem 1.4rem; font-weight:300; font-size:clamp(1.3rem,2.4vw,2.2rem); line-height:1.35; text-transform:uppercase}
+.designers button{border:0; background:none; padding:0; font:inherit; color:inherit; cursor:pointer; text-transform:inherit; text-align:left}
+.designers button:hover{box-shadow:inset 0 -.32em 0 var(--lime)}
+
+/* Sustainability */
+.mat{display:grid; grid-template-columns:1fr 1fr; gap:var(--gap)}
+.mat div{background:var(--bg); padding:clamp(1.4rem,3vw,2.2rem); border-top:6px solid var(--lime)}
+.mat b{font-weight:900; font-size:clamp(1.8rem,3vw,2.6rem); display:block; line-height:1; margin-bottom:.8rem; text-transform:uppercase}
+.mat p{color:var(--muted); margin:0}
+@media (max-width:700px){ .mat{grid-template-columns:1fr} }
+
+/* Tools */
+.tools{display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid #333}
+.tools a{display:flex; flex-direction:column; gap:.5rem; padding:1.6rem 1.4rem 1.6rem 0; text-decoration:none; border-bottom:1px solid #333}
+.tools a + a{padding-left:1.4rem; border-left:1px solid #333}
+.tools p{color:#BDBDBD; font-size:.92rem; margin:0 0 .6rem}
+.tools a:hover h3{color:var(--lime)}
+.tools .more{margin-top:auto}
+@media (max-width:1000px){ .tools{grid-template-columns:1fr 1fr} .tools a:nth-child(3){border-left:0; padding-left:0} }
+@media (max-width:560px){ .tools{grid-template-columns:1fr} .tools a + a{border-left:0; padding-left:0} }
+
+.cta{display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap}
+.cta h2{margin:0}
+.cta .btn{border-color:#000}
+
+/* ---------- Collections page ---------- */
+.page-head{padding-top:clamp(2.5rem,5vw,4rem); padding-bottom:clamp(2rem,4vw,3rem)}
+.types{display:flex; flex-wrap:wrap; gap:.6rem; margin:0; padding:0; list-style:none}
+.types a{display:inline-flex; align-items:center; min-height:42px; padding:0 1rem; border:1px solid var(--line); text-decoration:none; font-size:.85rem; text-transform:uppercase; letter-spacing:.04em; background:var(--bg)}
+.types a:hover{border-color:var(--ink)}
+.filters{display:flex; flex-wrap:wrap; gap:1rem; align-items:flex-end; margin-bottom:1.6rem}
+.field{display:flex; flex-direction:column; gap:.4rem; font-size:.78rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em}
+.field input,.field select,.field textarea{font:inherit; font-size:1rem; text-transform:none; letter-spacing:0; font-weight:400; min-height:48px; padding:.6rem .9rem; border:1.5px solid var(--ink); background:var(--bg); color:var(--ink); border-radius:0; min-width:16rem}
+.field textarea{min-height:9rem; resize:vertical}
+.count{color:var(--muted); font-size:.9rem; margin-left:auto}
+.fam-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(16rem,1fr)); column-gap:2rem; border-top:1.5px solid var(--ink)}
+.fam-list a{display:flex; justify-content:space-between; align-items:baseline; gap:1rem; padding:1rem 0; border-bottom:1px solid var(--line); text-decoration:none; height:100%}
+.fam-list strong{display:block; font-weight:700; text-transform:uppercase}
+.fam-list span{display:block; color:var(--muted); font-size:.86rem}
+.fam-list a:hover strong{box-shadow:inset 0 -6px 0 var(--lime)}
+.fam-list .new{display:inline; font-size:.66rem; font-weight:700; background:var(--lime); color:#000; padding:.1rem .4rem; margin-left:.5rem; vertical-align:middle}
+.empty{padding:2rem 0; color:var(--muted)}
+.label{font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin:0 0 .9rem}
+
+/* ---------- Family page ---------- */
+.fam-hero{display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(2rem,4vw,4rem); align-items:start; padding-top:clamp(2rem,4vw,3rem); padding-bottom:clamp(3rem,5vw,4.5rem)}
+.fam-hero .stage3d{aspect-ratio:5/4}
+.by{font-size:.95rem; margin:-.5rem 0 1.3rem; color:var(--muted)}
+.by b{color:var(--ink); font-weight:600}
+.specs{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1.5px solid var(--ink); margin-top:1.8rem}
+.specs div{padding:1rem 1rem 0 0}
+.specs div + div{border-left:1px solid var(--line); padding-left:1rem}
+.specs b{display:block; font-weight:900; font-size:1.5rem; line-height:1.1}
+.specs span{font-size:.82rem; color:var(--muted)}
+@media (max-width:900px){ .fam-hero{grid-template-columns:1fr} .fam-hero .stage3d{order:-1} }
+.ctl-label{font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin:1.6rem 0 .7rem}
+.swatches{display:flex; gap:.6rem; flex-wrap:wrap}
+.sw{display:flex; flex-direction:column; align-items:flex-start; gap:.4rem; padding:0; border:0; background:none; color:var(--ink); font:inherit; font-size:.8rem; cursor:pointer; min-width:58px}
+.sw i{display:block; width:58px; height:40px; background:var(--c); border:1px solid var(--line)}
+.sw[aria-pressed="true"] i{outline:3px solid var(--lime); outline-offset:3px}
+.sw[aria-pressed="true"]{font-weight:600}
+.seg{display:flex; flex-wrap:wrap; border:1.5px solid var(--ink); width:max-content; max-width:100%}
+.seg button{font:inherit; font-size:.82rem; font-weight:500; text-transform:uppercase; letter-spacing:.03em; min-height:44px; padding:0 1rem; border:0; background:transparent; color:var(--ink); cursor:pointer}
+.seg button + button{border-left:1.5px solid var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--lime); color:#000}
+.caption{margin-top:.8rem; min-height:3em; color:var(--muted); font-size:.92rem}
+.features{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap)}
+.features div{border-top:6px solid var(--lime); padding-top:1rem}
+.features p{color:var(--muted); font-size:.95rem; margin:0}
+@media (max-width:800px){ .features{grid-template-columns:1fr} }
+.prod-grid{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:1rem}
+.prod-grid a{display:flex; flex-direction:column; justify-content:space-between; min-height:8.5rem; padding:1.2rem; background:var(--bg); border:1px solid var(--line); text-decoration:none; transition:border-color .2s}
+.prod-grid a:hover{border-color:var(--ink)}
+.prod-grid small{font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+.prod-grid strong{font-size:1.02rem; font-weight:600; display:block; margin-top:.25rem}
+.cta-band{display:grid; grid-template-columns:repeat(3,1fr); border:1.5px solid var(--ink); margin-top:3rem}
+.cta-band a{padding:1.8rem; text-decoration:none; display:block}
+.cta-band a + a{border-left:1.5px solid var(--ink)}
+.cta-band a:hover{background:var(--lime); color:#000}
+.cta-band span{display:block; color:var(--muted); font-size:.9rem}
+.cta-band a:hover span{color:#000}
+@media (max-width:800px){ .cta-band{grid-template-columns:1fr} .cta-band a + a{border-left:0; border-top:1.5px solid var(--ink)} }
+.pager{display:flex; justify-content:space-between; gap:1rem; margin-top:3rem; padding-top:1.6rem; border-top:1px solid var(--line)}
+.pager a{text-decoration:none; font-weight:700; text-transform:uppercase}
+.pager span{display:block; font-size:.76rem; color:var(--muted); font-weight:500}
+.pager a:last-child{text-align:right}
+
+/* ---------- Company / contacts ---------- */
+.timeline{list-style:none; margin:0; padding:0; border-left:2px solid var(--ink)}
+.timeline li{position:relative; padding:0 0 1.8rem 2rem}
+.timeline li::before{content:""; position:absolute; left:-8px; top:.45rem; width:14px; height:14px; background:var(--lime)}
+.timeline b{display:block; font-weight:900; font-size:1.7rem; line-height:1.1}
+.values{list-style:none; counter-reset:v; margin:0; padding:0; border-top:1.5px solid var(--ink)}
+.values li{counter-increment:v; display:grid; grid-template-columns:3rem 1fr; gap:1rem; padding:1.2rem 0; border-bottom:1px solid var(--line)}
+.values li::before{content:counter(v,decimal-leading-zero); font-weight:900; font-size:1.25rem}
+.values p{margin:.2rem 0 0; color:var(--muted); font-size:.93rem}
+.chips{display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; padding:0; margin:1.2rem 0 0}
+.chips li{padding:.5rem 1rem; background:var(--bg); border:1px solid var(--line); font-size:.88rem}
+.aud{display:grid; grid-template-columns:repeat(5,1fr); gap:var(--gap)}
+.aud div{padding-top:1rem; border-top:1.5px solid var(--ink)}
+.aud p{color:var(--muted); font-size:.92rem; margin:0}
+@media (max-width:1000px){ .aud{grid-template-columns:1fr 1fr} }
+blockquote{margin:2.5rem 0 0; padding:0 0 0 1.4rem; border-left:6px solid var(--lime); font-weight:300; font-size:clamp(1.25rem,2vw,1.7rem); line-height:1.35; max-width:38ch}
+.contact-grid{display:grid; grid-template-columns:1fr 1.25fr; gap:clamp(2rem,5vw,5rem)}
+@media (max-width:900px){ .contact-grid{grid-template-columns:1fr} }
+.addr h3{margin-top:1.8rem} .addr h3:first-child{margin-top:0}
+.addr p{margin:0}
+.addr a{text-decoration:none; border-bottom:1px solid var(--line)}
+.form{display:grid; gap:1.1rem}
+.form .field input,.form .field select,.form .field textarea{min-width:0; width:100%}
+.form .row{display:grid; grid-template-columns:1fr 1fr; gap:1.1rem}
+@media (max-width:600px){ .form .row{grid-template-columns:1fr} }
+.note{font-size:.85rem; color:var(--muted)}
+.err{color:#B3261E; font-size:.88rem; min-height:1.2em; margin:0}
+
+footer{background:var(--dark); color:#BDBDBD; font-size:.86rem}
+footer .container{display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:2rem; padding-top:4rem; padding-bottom:calc(3rem + env(safe-area-inset-bottom,0px))}
+footer .logo{color:#fff; margin-bottom:1.2rem}
+footer h3{color:#fff; font-size:.78rem; margin:0 0 .8rem}
+footer p{margin:0}
+footer a{text-decoration:none}
+footer a:hover{color:var(--lime)}
+footer ul{list-style:none; margin:0; padding:0; line-height:2.1}
+@media (max-width:800px){ footer .container{grid-template-columns:1fr 1fr} }
+
+.fallback-note{display:none}
+.no-webgl .fallback-note{display:block}
+.no-webgl .stage-tools,.no-webgl .stage-hint{display:none}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="wipe" id="wipe" aria-hidden="true"><span class="logo"><span class="w">plus<span class="plus"></span></span><small>OUTDOOR ATTITUDE</small></span></div>
+
+<header class="nav" id="nav">
+  <div class="container nav-in">
+    <a class="logo" href="#home" aria-label="PLUST, outdoor attitude, home"><span class="w">plus<span class="plus" aria-hidden="true"></span></span><small>OUTDOOR ATTITUDE</small></a>
+    <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <div class="menu" id="menu">
+      <div class="lang"><a href="https://www.plust.it/en/" target="_blank" rel="noopener">EN</a> / <b>IT</b> / <a href="https://www.plust.it/es/" target="_blank" rel="noopener">ES</a></div>
+      <ul>
+        <li><a href="#collezioni" data-nav="collezioni">Collezioni</a></li>
+        <li><a href="#progettisti" data-nav="progettisti">Progettisti</a></li>
+        <li><a href="#azienda" data-nav="azienda">Azienda</a></li>
+        <li><a href="#contatti" data-nav="contatti">Contatti</a></li>
+        <li><a class="ext" href="https://www.plust.it/project-book/" target="_blank" rel="noopener">Project</a></li>
+        <li><a class="ext" href="https://shop.plust.it/" target="_blank" rel="noopener">Shop online</a></li>
+        <li><a class="ext" href="https://www.plust.it/myplust-download/" target="_blank" rel="noopener">MyPlust</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================= HOME ======================= -->
+<div class="view" data-view="home" data-title="PLUST Collection — Design per esterni made in Italy">
+
+  <section class="hero-scroll" data-hero-scroll>
+    <div class="container hero-sticky">
+      <div class="stage3d hero-stage" data-type="hero">
+        <div class="hero-copy">
+          <h1><span class="lt">Design per esterni</span>made in Italy</h1>
+          <div class="rule"></div>
+          <p>Arredi, luci e vasi per terrazze, giardini, hotel e spazi pubblici. Disegnati con designer internazionali, prodotti in Italia dal 2006.</p>
+          <div class="actions">
+            <a class="btn lime" href="#collezioni">Scopri le collezioni</a>
+            <a class="btn" href="#progettisti">Area progettisti</a>
+          </div>
+        </div>
+        <div class="hero-caps">
+          <div class="cap" data-cap="0"><span class="k">01 / 04</span><h2>La famiglia<strong>Fade</strong></h2><p>Poltrone, tavoli, sgabelli e lampade disegnati da Marco Gregori con un unico linguaggio formale.</p></div>
+          <div class="cap" data-cap="1"><span class="k">02 / 04</span><h2>Forme<strong>scultoree</strong></h2><p>Volumi morbidi e avvolgenti che cambiano a ogni punto di vista.</p></div>
+          <div class="cap" data-cap="2"><span class="k">03 / 04</span><h2>Un pezzo<strong>unico</strong></h2><p>Lo stampaggio rotazionale crea una scocca cava e senza giunture: leggera da spostare, robusta all’esterno.</p></div>
+          <div class="cap" data-cap="3"><span class="k">04 / 04</span><h2>Finitura<strong data-fin-name>Terracotta</strong></h2><p>Superfici con effetto pietra, disponibili in più colori.</p><a class="btn lime" href="#fade">Scopri Fade</a></div>
+        </div>
+        <div class="hs" data-hs="0"><i></i><span>Scocca cava in polietilene</span></div>
+        <div class="hs" data-hs="1"><i></i><span>Un solo stampo, nessuna giunzione</span></div>
+        <div class="hs" data-hs="2"><i></i><span>Base stabile per l’esterno</span></div>
+        <div class="hero-progress"><i></i></div>
+        <div class="scroll-cue">Scorri per scoprire</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="band">
+    <div class="container">
+      <div class="intro">
+        <h2>Chi è PLUST<strong>diamo forma al vivere all’aperto</strong></h2>
+        <div>
+          <p class="lead">PLUST collection è il brand di design di euro3plast, azienda industriale che dal 1974 produce articoli in plastica per la casa e il giardino.</p>
+          <p class="muted">Con la tecnologia dello stampaggio rotazionale realizziamo arredi leggeri, resistenti e pensati per stare all’aperto tutto l’anno, firmati da designer italiani e internazionali. Le nostre collezioni arredano hotel, ristoranti, spazi pubblici e case private.</p>
+          <a class="more" href="#azienda">La nostra storia</a>
+        </div>
+      </div>
+      <div class="facts">
+        <div><b data-count="1974">1974</b><span>Euro3plast inizia a produrre per casa e giardino</span></div>
+        <div><b data-count="2006">2006</b><span>Nasce PLUST collection, il brand di design</span></div>
+        <div><b data-count="36">36</b><span>Famiglie di prodotto per l’outdoor</span></div>
+        <div><b data-designer-count>20+</b><span>Designer e studi che firmano le collezioni</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track" data-mq><span>Design per esterni</span><b class="mq-plus"></b><span class="o">Made in Italy</span><b class="mq-plus"></b><span>Stampaggio rotazionale</span><b class="mq-plus"></b><span class="o">Outdoor attitude</span><b class="mq-plus"></b><span>36 famiglie</span><b class="mq-plus"></b><span class="o">Hospitality e contract</span><b class="mq-plus"></b><span>Design per esterni</span><b class="mq-plus"></b><span class="o">Made in Italy</span><b class="mq-plus"></b><span>Stampaggio rotazionale</span><b class="mq-plus"></b><span class="o">Outdoor attitude</span><b class="mq-plus"></b><span>36 famiglie</span><b class="mq-plus"></b><span class="o">Hospitality e contract</span><b class="mq-plus"></b></div></div>
+
+  <section class="band grey">
+    <div class="container">
+      <div class="head">
+        <h2>Cosa<strong>produciamo</strong></h2>
+        <p class="muted">Una gamma completa per arredare lo spazio esterno: dalla seduta singola al sistema modulare, dal tavolo alla luce che accende la sera.</p>
+      </div>
+      <div class="cats">
+        <a class="cat" href="https://www.plust.it/tipologie/sedute/" target="_blank" rel="noopener"><div class="stage3d" data-type="chair"></div><div class="cat-b"><h3>Sedute e poltrone</h3><p>Poltrone, sedie e sgabelli dalle forme scultoree.</p><span class="more">Vedi le sedute</span></div></a>
+        <a class="cat" href="#softer"><div class="stage3d" data-type="softer" data-cfg="angolare"></div><div class="cat-b"><h3>Lounge modulari</h3><p>Sedute, pouf e tavolini da comporre liberamente.</p><span class="more">Scopri Softer</span></div></a>
+        <a class="cat" href="https://www.plust.it/tipologie/tavoli/" target="_blank" rel="noopener"><div class="stage3d" data-type="tables"></div><div class="cat-b"><h3>Tavoli e tavolini</h3><p>Da pranzo, da caffè e d’appoggio, coordinati alle sedute.</p><span class="more">Vedi i tavoli</span></div></a>
+        <a class="cat" href="https://www.plust.it/tipologie/lights/" target="_blank" rel="noopener"><div class="stage3d" data-type="lamp" style="--sbg:#2A2B2D"></div><div class="cat-b"><h3>Illuminazione</h3><p>Lampade luminose da terra e da tavolo per l’esterno.</p><span class="more">Vedi le luci</span></div></a>
+        <a class="cat" href="https://www.plust.it/tipologie/vasi/" target="_blank" rel="noopener"><div class="stage3d" data-type="vases"></div><div class="cat-b"><h3>Vasi e complementi</h3><p>Vasi di grande formato e complementi scenici.</p><span class="more">Vedi i vasi</span></div></a>
+        <a class="cat" href="#twist"><div class="stage3d" data-type="twist" data-cfg="cerchio"></div><div class="cat-b"><h3>Sistemi componibili</h3><p>Elementi che si combinano per spazi pubblici e contract.</p><span class="more">Scopri Twist</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" data-scope>
+    <div class="container process">
+      <div>
+        <h2>Come lo facciamo<strong>stampaggio rotazionale</strong></h2>
+        <p class="muted">È la nostra firma: uno stampo che ruota lentamente su due assi dentro un forno trasforma la polvere di polietilene in un pezzo unico, cavo e senza giunture.</p>
+        <ol class="steps" data-steps>
+          <li><button type="button" data-step="0"><b>01</b><span><strong>Carico</strong><span>La polvere di polietilene viene dosata nello stampo aperto.</span></span></button></li>
+          <li><button type="button" data-step="1"><b>02</b><span><strong>Rotazione in forno</strong><span>Lo stampo ruota su due assi: la polvere fonde e riveste le pareti in modo uniforme.</span></span></button></li>
+          <li><button type="button" data-step="2"><b>03</b><span><strong>Raffreddamento</strong><span>Sempre in rotazione, il pezzo si raffredda e prende la forma definitiva.</span></span></button></li>
+          <li><button type="button" data-step="3"><b>04</b><span><strong>Estrazione</strong><span>Lo stampo si apre e il pezzo passa al controllo e alla finitura.</span></span></button></li>
+        </ol>
+        <ul class="benefits"><li>Pezzo unico, senza giunture</li><li>Leggero e robusto</li><li>Pensato per stare fuori</li><li>Materiali testati CATAS</li></ul>
+      </div>
+      <div class="stage3d" data-type="process"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="container">
+      <div class="head">
+        <h2>Per chi<strong>progettiamo</strong></h2>
+        <p class="muted">Ogni collezione nasce per luoghi veri. Scorri: lo spazio si costruisce attorno ai prodotti, come in un progetto hospitality.</p>
+      </div>
+      <div class="sectors">
+        <div class="stage3d" data-type="terrace"></div>
+        <ul class="sec-list">
+          <li><div><h3>Hospitality</h3><p>Hotel, resort, spa e strutture ricettive che vogliono un outdoor elegante e durevole.</p></div></li>
+          <li><div><h3>HoReCa</h3><p>Ristoranti, bar e beach club: arredi ad alte prestazioni che reggono il maltempo.</p></div></li>
+          <li><div><h3>Contract e spazi pubblici</h3><p>Grandi progetti, piazze, aeroporti: qualità e versatilità su larga scala.</p></div></li>
+          <li><div><h3>Residenziale</h3><p>Case contemporanee, terrazze e giardini privati.</p></div></li>
+          <li><div><h3>Professionisti del design</h3><p>Architetti, interior designer e paesaggisti. <a href="#progettisti">Strumenti dedicati</a></p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band grey">
+    <div class="container">
+      <div class="head">
+        <h2>Collezioni<strong>in evidenza</strong></h2>
+        <p class="muted">Quattro famiglie firmate dagli art director BrogliatoTraverso e da Marco Gregori. <a href="#collezioni">Vedi tutte le 36 famiglie</a></p>
+      </div>
+      <div class="fams" data-fam-cards></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="container">
+      <div class="head">
+        <h2>I nostri<strong>designer</strong></h2>
+        <p class="muted">PLUST lavora con progettisti italiani e internazionali. Seleziona un nome per vedere le sue famiglie.</p>
+      </div>
+      <ul class="designers" data-designers></ul>
+    </div>
+  </section>
+
+  <section class="band grey">
+    <div class="container two">
+      <div>
+        <h2>Sostenibilità<strong>che dura nel tempo</strong></h2>
+        <p class="lead">Un prodotto che resiste per anni è la prima forma di sostenibilità. A questo aggiungiamo materiali riciclati e processi ottimizzati.</p>
+        <a class="more" href="#azienda">Approfondisci</a>
+      </div>
+      <div class="mat">
+        <div><b>Decor</b><p>Superfici materiche da polveri plastiche di alta qualità e residui di produzione selezionati.</p></div>
+        <div><b>Ground</b><p>Realizzato al 100% con i nostri scarti di produzione, riprocessati e reintrodotti nel ciclo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark">
+    <div class="container">
+      <div class="head">
+        <h2>Area<strong>progettisti</strong></h2>
+        <p class="muted">Tutto quello che serve per inserire PLUST nei tuoi progetti, dalla fase di concept alla fornitura.</p>
+      </div>
+      <div class="tools">
+        <a href="https://www.plust.it/myplust-download/" target="_blank" rel="noopener"><h3>Modelli 3D</h3><p>File di tutti gli articoli da scaricare nell’area MyPlust.</p><span class="more">Scarica</span></a>
+        <a href="https://www.plust.it/cataloghi/" target="_blank" rel="noopener"><h3>Cataloghi</h3><p>Le collezioni complete in PDF, novità comprese.</p><span class="more">Consulta</span></a>
+        <a href="https://www.plust.it/project-book/" target="_blank" rel="noopener"><h3>Project book</h3><p>Realizzazioni in hotel, ristoranti e spazi pubblici.</p><span class="more">Guarda</span></a>
+        <a href="#contatti"><h3>Supporto dedicato</h3><p>Campionature, schede tecniche e forniture contract.</p><span class="more">Contattaci</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band lime">
+    <div class="container cta">
+      <h2>Hai un progetto?<strong>Parliamone</strong></h2>
+      <div class="actions" style="margin:0"><a class="btn" href="#contatti">Contattaci</a><a class="btn" href="https://www.plust.it/rivenditori-autorizzati/" target="_blank" rel="noopener">Trova un rivenditore</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================= COLLEZIONI ======================= -->
+<div class="view" data-view="collezioni" data-title="Collezioni — PLUST" hidden>
+  <section class="container page-head">
+    <div class="crumb"><a href="#home">Home</a> / Collezioni</div>
+    <div class="head" style="margin:0">
+      <h1><span class="lt">Le</span>collezioni</h1>
+      <p class="lead">36 famiglie di arredi, luci e vasi per l’outdoor. Ogni famiglia nasce dalla collaborazione con un designer e riunisce prodotti coordinati tra loro.</p>
+    </div>
+  </section>
+  <section class="band grey" style="padding-top:3rem">
+    <div class="container">
+      <p class="label">In evidenza</p>
+      <div class="fams" data-fam-cards></div>
+    </div>
+  </section>
+  <section class="band">
+    <div class="container">
+      <p class="label">Cerca per tipologia</p>
+      <ul class="types" style="margin-bottom:3rem">
+        <li><a class="ext" href="https://www.plust.it/tipologie/sedute/" target="_blank" rel="noopener">Sedute</a></li>
+        <li><a class="ext" href="https://www.plust.it/tipologie/sedute-lounge/" target="_blank" rel="noopener">Sedute lounge</a></li>
+        <li><a class="ext" href="https://www.plust.it/tipologie/sgabelli/" target="_blank" rel="noopener">Sgabelli</a></li>
+        <li><a class="ext" href="https://www.plust.it/tipologie/tavoli/" target="_blank" rel="noopener">Tavoli</a></li>
+        <li><a class="ext" href="https://www.plust.it/tipologie/lights/" target="_blank" rel="noopener">Lights</a></li>
+        <li><a class="ext" href="https://www.plust.it/tipologie/vasi/" target="_blank" rel="noopener">Vasi</a></li>
+        <li><a class="ext" href="https://www.plust.it/tipologie/complementi/" target="_blank" rel="noopener">Complementi</a></li>
+        <li><a class="ext" href="https://www.plust.it/tipologie/desk-corner/" target="_blank" rel="noopener">Desk &amp; corner</a></li>
+      </ul>
+      <p class="label">Tutte le famiglie</p>
+      <div class="filters">
+        <label class="field">Cerca<input type="search" id="famSearch" placeholder="Famiglia o designer" autocomplete="off"></label>
+        <label class="field">Designer<select id="famDesigner"><option value="">Tutti i designer</option></select></label>
+        <span class="count" id="famCount" aria-live="polite"></span>
+      </div>
+      <ul class="fam-list" id="famList"></ul>
+      <p class="empty" id="famEmpty" hidden>Nessuna famiglia corrisponde alla ricerca. Prova un altro nome o scegli «Tutti i designer».</p>
+    </div>
+  </section>
+</div>
+
+<div class="view" data-view="fade" data-title="Fade family — PLUST" hidden></div>
+<div class="view" data-view="softer" data-title="Softer family — PLUST" hidden></div>
+<div class="view" data-view="twist" data-title="Twist family — PLUST" hidden></div>
+<div class="view" data-view="vela" data-title="Vela family — PLUST" hidden></div>
+
+<!-- ======================= PROGETTISTI ======================= -->
+<div class="view" data-view="progettisti" data-title="Area progettisti — PLUST" hidden>
+  <section class="container fam-hero" data-scope>
+    <div>
+      <div class="crumb"><a href="#home">Home</a> / Progettisti</div>
+      <h1><span class="lt">Area</span>progettisti</h1>
+      <div class="rule"></div>
+      <p class="lead">Pensata per chi progetta spazi, non solo prodotti. Collezioni versatili, materiali innovativi, modelli 3D, documentazione tecnica e un supporto dedicato, dal concept alla realizzazione.</p>
+      <div class="actions"><a class="btn lime" href="https://www.plust.it/myplust-download/" target="_blank" rel="noopener">Scarica i modelli 3D</a><a class="btn" href="#contatti">Contattaci</a></div>
+    </div>
+    <div class="stage3d" data-type="pro" data-drag>
+      <span class="stage-hint">Prodotto e modello 3D</span>
+      <div class="stage-tools"><button type="button" data-rot="-1" aria-label="Ruota a sinistra">‹</button><button type="button" data-rot="1" aria-label="Ruota a destra">›</button></div>
+    </div>
+  </section>
+  <section class="band dark">
+    <div class="container">
+      <div class="head"><h2>Strumenti<strong>per il progetto</strong></h2><p class="muted">Dalla scelta del prodotto alla consegna in cantiere.</p></div>
+      <div class="tools">
+        <a href="#collezioni"><h3>Collezioni</h3><p>Tutte le famiglie, filtrabili per designer.</p><span class="more">Sfoglia</span></a>
+        <a href="https://www.plust.it/myplust-download/" target="_blank" rel="noopener"><h3>Modelli 3D</h3><p>File degli articoli nell’area MyPlust, previa registrazione.</p><span class="more">Scarica</span></a>
+        <a href="https://www.plust.it/project-book/" target="_blank" rel="noopener"><h3>Project book</h3><p>I nostri prodotti nei progetti realizzati.</p><span class="more">Guarda</span></a>
+        <a href="https://www.plust.it/decor/" target="_blank" rel="noopener"><h3>Finitura Decor</h3><p>La superficie materica che unisce design e sostenibilità.</p><span class="more">Approfondisci</span></a>
+      </div>
+      <blockquote>Lo stampaggio rotazionale e la ricerca sulle finiture ci permettono di modellare la plastica con precisione e libertà creativa.</blockquote>
+    </div>
+  </section>
+  <section class="band lime">
+    <div class="container cta">
+      <h2>Serve un supporto<strong>sul tuo progetto?</strong></h2>
+      <div class="actions" style="margin:0"><a class="btn" href="#contatti">Scrivici</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================= AZIENDA ======================= -->
+<div class="view" data-view="azienda" data-title="Azienda — PLUST" hidden>
+  <section class="container page-head">
+    <div class="crumb"><a href="#home">Home</a> / Azienda</div>
+    <div class="two" style="align-items:start">
+      <div>
+        <h1><span class="lt">Design per esterni</span>made in Italy</h1>
+        <div class="rule"></div>
+        <p class="lead">Arredi per esterni eleganti, versatili e costruiti per durare. Dal 2006 PLUST mette in dialogo innovazione industriale e cultura artigianale italiana.</p>
+        <div class="actions"><a class="btn lime" href="https://www.plust.it/content/uploads/2026/01/PLUST_Company_profile75.pdf" target="_blank" rel="noopener">Scarica il company profile</a></div>
+      </div>
+      <ol class="timeline" aria-label="La nostra storia">
+        <li><b>1974</b>Euro3plast avvia la produzione industriale di articoli in plastica per la casa e il giardino.</li>
+        <li><b>2006</b>Nasce PLUST collection: la forza manifatturiera della casa madre al servizio del design contemporaneo.</li>
+        <li><b>Oggi</b>Un riferimento del design outdoor made in Italy, con collezioni per contract, ospitalità e residenze.</li>
+      </ol>
+    </div>
+  </section>
+  <section class="band grey">
+    <div class="container two" style="align-items:start">
+      <div><h2>Visione</h2><p class="lead">Disegnare elementi che accolgono e valorizzano lo spazio, leggendo il contesto con forme contemporanee, volumi morbidi e un comfort pensato per la vita di tutti i giorni.</p></div>
+      <div><h2>Missione</h2><p class="lead">Creare soluzioni outdoor innovative e responsabili che durino nel tempo, in equilibrio tra estetica, funzione e rispetto per l’ambiente.</p></div>
+    </div>
+  </section>
+  <section class="band dark" data-scope>
+    <div class="container process">
+      <div>
+        <h2>La tecnologia<strong>rotazionale</strong></h2>
+        <p class="muted">Lo stampaggio rotazionale permette volumi cavi, morbidi e senza giunture: per questo i prodotti PLUST sono leggeri da spostare e robusti all’esterno.</p>
+        <ol class="steps" data-steps>
+          <li><button type="button" data-step="0"><b>01</b><span><strong>Carico</strong><span>La polvere viene dosata nello stampo.</span></span></button></li>
+          <li><button type="button" data-step="1"><b>02</b><span><strong>Rotazione in forno</strong><span>La polvere fonde e riveste le pareti.</span></span></button></li>
+          <li><button type="button" data-step="2"><b>03</b><span><strong>Raffreddamento</strong><span>Il pezzo prende la forma definitiva.</span></span></button></li>
+          <li><button type="button" data-step="3"><b>04</b><span><strong>Estrazione</strong><span>Controllo e finitura.</span></span></button></li>
+        </ol>
+      </div>
+      <div class="stage3d" data-type="process"></div>
+    </div>
+  </section>
+  <section class="band">
+    <div class="container two" style="align-items:start">
+      <div>
+        <h2>Filosofia<strong>e valori</strong></h2>
+        <ol class="values">
+          <li><div><h3>Design senza tempo e funzionale</h3><p>Forme che restano attuali e servono davvero chi le usa.</p></div></li>
+          <li><div><h3>Materiali durevoli per esterni</h3><p>Prodotti pensati per sole, pioggia e uso intenso.</p></div></li>
+          <li><div><h3>Produzione responsabile</h3><p>Processi ottimizzati e materiali riciclati dove possibile.</p></div></li>
+          <li><div><h3>Equilibrio tra estetica e comfort</h3><p>La bellezza non toglie nulla al piacere di sedersi.</p></div></li>
+          <li><div><h3>Versatilità del design</h3><p>Dalla terrazza di casa alla hall di un aeroporto.</p></div></li>
+        </ol>
+      </div>
+      <div>
+        <h2>Design<strong>e ricerca</strong></h2>
+        <p>L’innovazione guida ogni collezione: ricerca sui materiali, sperimentazione formale, collaborazioni con designer e sviluppo di sistemi modulari.</p>
+        <ul class="chips"><li>Ricerca materiali</li><li>Sperimentazione formale</li><li>Collaborazioni con designer</li><li>Sistemi modulari</li></ul>
+        <h2 style="margin-top:3rem">Perché<strong>PLUST</strong></h2>
+        <ul class="chips"><li>Tecnologia rotazionale</li><li>Davvero adatto all’esterno</li><li>Materiali testati CATAS</li><li>Supporto al design</li><li>Flessibilità produttiva</li><li>Eccellenza certificata</li></ul>
+        <div class="actions"><a class="btn ext" href="https://www.plust.it/certificazioni-2/" target="_blank" rel="noopener">Certificazioni</a></div>
+      </div>
+    </div>
+  </section>
+  <section class="band grey">
+    <div class="container two">
+      <div><h2>Sostenibilità<strong>come valore di design</strong></h2><p class="lead">La durata del prodotto è la prima forma di sostenibilità. A questa si aggiungono materiali riciclati e una visione responsabile di lungo periodo.</p></div>
+      <div class="mat">
+        <div><b>Decor</b><p>Polveri plastiche di alta qualità combinate con residui di produzione selezionati, per superfici materiche riconoscibili.</p></div>
+        <div><b>Ground</b><p>Realizzato interamente con gli scarti di produzione, riprocessati da partner specializzati e reintrodotti nel ciclo.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="band">
+    <div class="container">
+      <h2>A chi<strong>ci rivolgiamo</strong></h2>
+      <div class="aud">
+        <div><h3>Ospitalità</h3><p>Hotel, resort, spa e strutture ricettive.</p></div>
+        <div><h3>Residenziale</h3><p>Case contemporanee che cercano arredi esterni curati e durevoli.</p></div>
+        <div><h3>HoReCa</h3><p>Ristoranti, bar e beach club con arredi ad alte prestazioni.</p></div>
+        <div><h3>Contract</h3><p>Progetti su larga scala e spazi pubblici.</p></div>
+        <div><h3>Professionisti</h3><p>Architetti, interior designer e paesaggisti.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================= CONTATTI ======================= -->
+<div class="view" data-view="contatti" data-title="Contatti — PLUST" hidden>
+  <section class="container page-head">
+    <div class="crumb"><a href="#home">Home</a> / Contatti</div>
+    <h1><span class="lt">Parliamo del</span>tuo progetto</h1>
+    <div class="rule"></div>
+  </section>
+  <section class="container" style="padding-bottom:5rem">
+    <div class="contact-grid">
+      <div class="addr">
+        <h3>PLUST collection</h3>
+        <p>A brand of euro3plast Spa<br>Viale del Lavoro, 45<br>36048 Ponte di Barbarano (VI), Italy</p>
+        <h3>Telefono ed email</h3>
+        <p><a href="tel:+390444788200">+39 0444 788200</a><br><a href="mailto:info@plust.com">info@plust.com</a></p>
+        <h3>Rivenditori</h3>
+        <p><a href="https://www.plust.it/rivenditori-autorizzati/" target="_blank" rel="noopener">Trova un punto vendita</a><br><a href="https://www.plust.it/diventa-rivenditore-autorizzato/" target="_blank" rel="noopener">Diventa rivenditore autorizzato</a></p>
+        <h3>Press</h3>
+        <p><a href="https://www.plust.it/news/" target="_blank" rel="noopener">News</a><br><a href="https://www.plust.it/comunicati-stampa/" target="_blank" rel="noopener">Comunicati stampa</a><br><a href="https://www.plust.it/fiere/" target="_blank" rel="noopener">Fiere</a></p>
+      </div>
+      <form class="form" id="contactForm" novalidate>
+        <div class="row">
+          <label class="field">Nome e cognome<input name="nome" required autocomplete="name"></label>
+          <label class="field">Email<input name="email" type="email" required autocomplete="email"></label>
+        </div>
+        <div class="row">
+          <label class="field">Azienda o studio<input name="azienda" autocomplete="organization"></label>
+          <label class="field">Profilo<select name="profilo"><option>Privato</option><option>Architetto o designer</option><option>Hospitality e HoReCa</option><option>Rivenditore</option><option>Stampa</option></select></label>
+        </div>
+        <label class="field">Collezione di interesse<select name="collezione" id="formFam"><option value="">Nessuna in particolare</option></select></label>
+        <label class="field">Messaggio<textarea name="messaggio" required></textarea></label>
+        <p class="err" id="formErr" aria-live="polite"></p>
+        <div><button class="btn lime" type="submit">Prepara l’email</button></div>
+        <p class="note">Il modulo apre il tuo programma di posta con il messaggio già compilato per info@plust.com.</p>
+      </form>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <div><a class="logo" href="#home" aria-label="PLUST, home"><span class="w">plus<span class="plus" aria-hidden="true"></span></span><small>OUTDOOR ATTITUDE</small></a><p>A brand of euro3plast Spa<br>Viale del Lavoro, 45<br>36048 Ponte di Barbarano (VI), Italy<br>P.IVA 00331710244</p></div>
+    <div><h3>Esplora</h3><ul><li><a href="#collezioni">Collezioni</a></li><li><a href="#progettisti">Progettisti</a></li><li><a href="#azienda">Azienda</a></li><li><a href="#contatti">Contatti</a></li></ul></div>
+    <div><h3>Servizi</h3><ul><li><a href="https://shop.plust.it/" target="_blank" rel="noopener">Shop online</a></li><li><a href="https://www.plust.it/cataloghi/" target="_blank" rel="noopener">Cataloghi</a></li><li><a href="https://www.plust.it/rivenditori-autorizzati/" target="_blank" rel="noopener">Rivenditori</a></li><li><a href="http://b2b.euro3plast.com/" target="_blank" rel="noopener">Area B2B</a></li></ul></div>
+    <div><h3>Contatti</h3><ul><li><a href="tel:+390444788200">+39 0444 788200</a></li><li><a href="mailto:info@plust.com">info@plust.com</a></li><li><a href="https://www.instagram.com/plust_collection/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/showcase/plust-collection/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>
+(() => {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r=document) => r.querySelector(s), $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const P = 'https://www.plust.it/products/';
+
+/* ===================== DATI ===================== */
+const FAMILIES = [
+  ['softer','BrogliatoTraverso','#softer',1],['twist','BrogliatoTraverso','#twist'],['vela','BrogliatoTraverso','#vela'],
+  ['airball','Alberto Brogliato','airball-family'],['armillaria','Odo Fioravanti','armillaria-family'],['bartolomeo','JoeVelluto (JVLT)','bartolomeo-family'],
+  ['bold','Giulio Iacchetti','bold-family'],['boom','Marco Gregori','boom-family'],['buba','Plust Design Dept.','buba-family'],
+  ['cactus','Giulio Iacchetti','cactus-family'],['chloé','Berenice','chloe-family'],['cubalibre','Giulio Iacchetti','cubalibre-family'],
+  ['diamond','JoeVelluto (JVLT)','diamond-family'],['drop','Emmanuel Babled','drop-family'],['enta','Setsu & Shinobu Ito','enta-family'],
+  ['fade','Marco Gregori','#fade'],['frozen','Matteo Ragni / Maurizio Prina','frozen-family'],['fura','Form Us With Love','fura-family'],
+  ['godot','Alberto Brogliato','godot-family'],['gradient','Mut Design','gradient-family'],['gumball','Alberto Brogliato','gumball-family'],
+  ['jetlag','Cédric Ragot','jetlag-family'],['lapsus','Eddy Antonello / Alberto Fabbian','lapsus-family'],['madame','Alessandro Busana','madame-family'],
+  ['moai','Luca Nichetto','moai-family'],['nicole','Ilaria Marelli','nicole-family'],['ninfea','Alessandro Busana','ninfea-family'],
+  ['ohla','Alberto Brogliato','ohla-family'],['plust van','Plust','plust-van-family'],['rebelot','Matteo Ragni','rebelot-family'],
+  ['reverse','Matteo Ragni','reverse-family'],['saving/space/vase','JoeVelluto (JVLT)','saving-space-vase-family'],['settembre','Luca Nichetto','settembre-family'],
+  ['tambo','Luca Nichetto','tambo-family'],['tebe lamp','Needs Studio','tebe-lamp-family'],['tool','Philippe Tabet','tool-family']
+];
+const DESIGNERS = [...new Set(FAMILIES.flatMap(f => f[1].split(' / ')))].filter(d => d !== 'Plust').sort((a,b) => a.localeCompare(b));
+const cat = s => /lamp/.test(s) ? 'Illuminazione' : /table|structure/.test(s) ? 'Tavoli' : /stool/.test(s) ? 'Sgabelli' : /box/.test(s) ? 'Complementi' : 'Sedute';
+const title = s => s.split('-').map(w => w[0].toUpperCase()+w.slice(1)).join(' ');
+const FAM = {
+  softer: { name:'Softer', designer:'BrogliatoTraverso', tag:'Comfort in outdoor freedom', isNew:true, type:'softer', cfg:'lineare',
+    text:'Un sistema lounge per esterni: seduta, pouf e tavolino si collegano in composizioni modulari. Softer Seat, con brevetto in corso, unisce la superficie flessibile SoftElement a un’imbottitura interna: il comfort di un divano senza cuscini in tessuto.',
+    specs:[['3','elementi del sistema'],['0','cuscini da riporre'],['365','giorni all’aperto']],
+    features:[['SoftElement','Superficie flessibile con imbottitura interna: niente cuscini da togliere quando piove.'],['Resiste agli agenti','Sole, pioggia, gelo e salsedine: pensato per terrazze, giardini, hotel e contract.'],['Modulare','Seduta, pouf e tavolino si collegano in composizioni libere.']],
+    products:['softer-seat','softer-pouf','softer-coffee-table'], control:'softer', catalog:'https://www.plust.it/content/uploads/2026/09/SOFTERcatalogo_compressed.pdf' },
+  fade: { name:'Fade', designer:'Marco Gregori', tag:'Eleganza informale', type:'fade',
+    text:'Una famiglia di arredi dalla superficie vibrante, con finiture che ricordano materiali naturali come la pietra e il granito. Linee morbide e accoglienti per ogni spazio, dal locale pubblico alla casa privata.',
+    specs:[['17','articoli nella famiglia'],['4','tipologie: sedute, sgabelli, tavoli, luci'],['1','linguaggio formale coordinato']],
+    features:[['Superfici materiche','Finiture con effetto pietra e granito che cambiano con la luce.'],['Famiglia completa','Poltrone, sgabelli, tavoli e lampade coordinati tra loro.'],['Luce','Le lampade Fade diventano sculture luminose la sera.']],
+    products:['fade-chair','fade-relax-armchair','fade-shell','fade-stack-chair','fade-stool','fade-low-stool','fade-table','fade-table-structure','fade-table-metal-structure','fade-dining-table-structure','fade-coffee-table','fade-coffee-table-structure','fade-lamp','fade-lamp-m','fade-table-lamp','fade-table-lamp-high','fade-table-lamp-metal'], control:'finish' },
+  twist: { name:'Twist', designer:'BrogliatoTraverso', tag:'Sistema componibile', type:'twist', cfg:'onda',
+    text:'Un sistema componibile che si evolve in configurazioni diverse. Seduta, panca e cassetta Twist si combinano per arredare qualsiasi contesto: contract, arredo urbano, hall aeroportuali, resort.',
+    specs:[['3','elementi: seduta, panca, cassetta'],['∞','configurazioni possibili'],['4','contesti: contract, urbano, aeroporti, resort']],
+    features:[['Componibile','Gli stessi elementi formano linee, onde e cerchi.'],['Per lo spazio pubblico','Pensato per aeroporti, piazze e grandi hall.'],['Un sistema','Seduta, panca e cassetta dialogano tra loro.']],
+    products:['twist','twist-bench','twist-box'], control:'twist' },
+  vela: { name:'Vela', designer:'BrogliatoTraverso', tag:'La forma del vento', type:'vela',
+    text:'Nasce dall’osservazione delle vele gonfiate dal vento. La poltrona ha una forma avvolgente, il tavolino nasconde un vano contenitore, la lampada reinterpreta il paralume con un collare ottonato e il divano gioca su un’asimmetria dinamica.',
+    specs:[['4','articoli: poltrona, divano, tavolino, lampada'],['1','vano contenitore nel tavolino'],['1','collare ottonato sulla lampada']],
+    features:[['Poltrona e divano','Volumi avvolgenti e asimmetrici, con cucitura lucida sul divano.'],['Tavolino contenitore','Un vano interno per tenere tutto a portata di mano.'],['Lampada','Curve fluide, base slanciata e collare ottonato.']],
+    products:['vela-armchair','vela-sofa','vela-coffee-table-structure','vela-lamp'], control:null }
+};
+const ORDER = ['softer','fade','twist','vela'];
+const FIN = { terracotta:['Terracotta','#5C2820'], bianco:['Bianco','#ECEAE5'], sabbia:['Sabbia','#CDBB9C'], antracite:['Antracite','#46484A'] };
+const SOFTER_CFG = { lineare:['Lineare','Quattro sedute e due pouf in linea: la soluzione più compatta per una lounge.'], angolare:['Angolare','Un angolo con chaise longue che delimita lo spazio e lascia libero il passaggio.'], conversazione:['Conversazione','Due file affacciate attorno al tavolino: ideale per hotel e beach club.'] };
+const TWIST_CFG = { onda:['Onda','Le sedute si alternano in una linea sinuosa che accompagna i percorsi.'], cerchio:['Cerchio','Quattro elementi chiudono un cerchio: un’isola al centro di una piazza o di una hall.'], esse:['Serpentina','Due curve opposte creano due zone di sosta rivolte in direzioni diverse.'] };
+
+/* ===================== CONTENUTI GENERATI ===================== */
+$$('[data-designer-count]').forEach(e => e.textContent = DESIGNERS.length);
+$$('[data-fam-cards]').forEach(w => w.innerHTML = ORDER.map(k => { const f = FAM[k];
+  return `<a class="fam-card" href="#${k}"><div class="stage3d" data-type="${f.type}"${f.cfg ? ` data-cfg="${k==='softer'?'conversazione':'cerchio'}"` : ''}></div><span class="t">${f.name}</span><span class="d">${f.designer}</span>${f.isNew ? '<span class="badge">Novità</span>' : ''}<span class="btn lime">Scopri</span></a>`; }).join(''));
+$$('[data-designers]').forEach(w => w.innerHTML = DESIGNERS.map(d => `<li><button type="button" data-designer="${d}">${d}</button></li>`).join(''));
+
+function buildFamily(key){
+  const f = FAM[key], v = $(`[data-view="${key}"]`), i = ORDER.indexOf(key);
+  const prev = ORDER[(i+ORDER.length-1)%ORDER.length], next = ORDER[(i+1)%ORDER.length];
+  const ctrl = f.control==='finish' ? `<p class="ctl-label">Finitura</p><div class="swatches" role="group" aria-label="Finitura" data-swatches></div>`
+    : f.control ? `<p class="ctl-label">Configurazione</p><div class="seg" role="group" aria-label="Configurazione ${f.name}" data-cfgs="${f.control}"></div><p class="caption" data-cap aria-live="polite"></p>` : '';
+  v.innerHTML = `
+  <section class="container fam-hero" data-scope>
+    <div>
+      <div class="crumb"><a href="#home">Home</a> / <a href="#collezioni">Collezioni</a> / ${f.name}</div>
+      <h1>${f.name}<span class="lt">family</span></h1>
+      <p class="by">design <b>${f.designer}</b>${f.isNew ? ' · <b>Novità</b>' : ''}</p>
+      <div class="rule"></div>
+      <p class="lead"><b>${f.tag}.</b> ${f.text}</p>
+      ${ctrl}
+      <div class="actions"><button class="btn lime" type="button" data-goto="prod-${key}">Vedi i prodotti</button>${f.catalog ? `<a class="btn" href="${f.catalog}" target="_blank" rel="noopener">Catalogo PDF</a>` : `<a class="btn" href="https://www.plust.it/family/${key==='fade'?'fade-family':'_'+key+'-family'}/" target="_blank" rel="noopener">Pagina sul sito</a>`}</div>
+      <div class="specs">${f.specs.map(([b,s]) => `<div><b>${b}</b><span>${s}</span></div>`).join('')}</div>
+    </div>
+    <div class="stage3d" data-type="${f.type}" data-drag${f.cfg ? ` data-cfg="${f.cfg}"` : ''}>
+      <span class="stage-hint">Trascina per ruotare</span>
+      <div class="stage-tools"><button type="button" data-rot="-1" aria-label="Ruota a sinistra">‹</button><button type="button" data-rot="1" aria-label="Ruota a destra">›</button></div>
+    </div>
+  </section>
+  <section class="band grey">
+    <div class="container">
+      <h2>Caratteristiche<strong>${f.name}</strong></h2>
+      <div class="features">${f.features.map(([h,p]) => `<div><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>
+    </div>
+  </section>
+  <section class="band" id="prod-${key}">
+    <div class="container">
+      <div class="head"><h2>Prodotti<strong>${f.products.length} articoli</strong></h2><p class="muted">Ogni articolo apre la scheda completa sul sito PLUST, con misure, finiture e file da scaricare.</p></div>
+      <ul class="prod-grid">${f.products.map(s => `<li><a href="${P}${s}/" target="_blank" rel="noopener"><span><small>${cat(s)}</small><strong>${title(s)}</strong></span><span class="more">Scheda prodotto</span></a></li>`).join('')}</ul>
+      <div class="cta-band">
+        <a href="https://www.plust.it/myplust-download/" target="_blank" rel="noopener"><h3>Modelli 3D</h3><span>Scarica i file per il tuo progetto</span></a>
+        <a href="https://www.plust.it/rivenditori-autorizzati/" target="_blank" rel="noopener"><h3>Rivenditori</h3><span>Vedi i prodotti dal vivo</span></a>
+        <a href="https://shop.plust.it/" target="_blank" rel="noopener"><h3>Shop online</h3><span>Acquista direttamente</span></a>
+      </div>
+      <nav class="pager" aria-label="Altre famiglie"><a href="#${prev}"><span>Precedente</span>${FAM[prev].name}</a><a href="#${next}"><span>Successiva</span>${FAM[next].name}</a></nav>
+    </div>
+  </section>`;
+}
+ORDER.forEach(buildFamily);
+document.addEventListener('click', e => { const b = e.target.closest('[data-goto]'); if (b) document.getElementById(b.dataset.goto).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
+
+/* ===================== COLLEZIONI ===================== */
+const famList = $('#famList'), famSearch = $('#famSearch'), famDes = $('#famDesigner');
+DESIGNERS.forEach(d => famDes.add(new Option(d, d)));
+FAMILIES.forEach(([n]) => $('#formFam').add(new Option(n, n)));
+function renderFams(){
+  const q = famSearch.value.trim().toLowerCase(), d = famDes.value;
+  const out = FAMILIES.filter(([n,des]) => (!q || n.includes(q) || des.toLowerCase().includes(q)) && (!d || des.split(' / ').includes(d)));
+  famList.innerHTML = out.map(([n,des,url,isNew]) => { const internal = url.startsWith('#');
+    return `<li><a href="${internal ? url : 'https://www.plust.it/family/'+url+'/'}"${internal ? '' : ' target="_blank" rel="noopener"'}><span><strong>${n}${isNew ? '<span class="new">Novità</span>' : ''}</strong><span>${des}</span></span>${internal ? '<span class="more" aria-hidden="true"></span>' : '<span class="ext" aria-label="apre il sito PLUST"></span>'}</a></li>`; }).join('');
+  $('#famCount').textContent = `${out.length} ${out.length===1 ? 'famiglia' : 'famiglie'}`;
+  $('#famEmpty').hidden = out.length > 0;
+}
+famSearch.addEventListener('input', renderFams); famDes.addEventListener('change', renderFams); renderFams();
+let pendingScroll = null;
+document.addEventListener('click', e => { const b = e.target.closest('[data-designer]'); if (!b) return;
+  famSearch.value = ''; famDes.value = b.dataset.designer; renderFams(); pendingScroll = 'famList'; location.hash = 'collezioni'; });
+
+/* ===================== CONTATTI ===================== */
+$('#contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target, err = $('#formErr');
+  const nome = f.nome.value.trim(), email = f.email.value.trim(), msg = f.messaggio.value.trim();
+  if (!nome || !email || !msg){ err.textContent = 'Compila nome, email e messaggio per preparare l’email.'; return; }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent = 'L’indirizzo email non è valido: controlla che contenga @ e un dominio.'; return; }
+  err.textContent = '';
+  const body = `Nome: ${nome}\nEmail: ${email}\nAzienda: ${f.azienda.value}\nProfilo: ${f.profilo.value}\nCollezione: ${f.collezione.value || '-'}\n\n${msg}`;
+  location.href = `mailto:info@plust.com?subject=${encodeURIComponent('Richiesta informazioni — ' + (f.collezione.value || 'PLUST'))}&body=${encodeURIComponent(body)}`;
+});
+
+/* ===================== NAV + ROUTER ===================== */
+const nav = $('#nav'), burger = $('#burger');
+burger.addEventListener('click', () => { const o = nav.classList.toggle('open'); burger.setAttribute('aria-expanded', o); burger.setAttribute('aria-label', o ? 'Chiudi il menu' : 'Apri il menu'); });
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), {passive:true});
+const views = $$('.view');
+let activeView = null;
+function route(){
+  const name = location.hash.slice(1);
+  const v = views.find(x => x.dataset.view === name) || views[0];
+  if (v !== activeView){
+    views.forEach(x => x.hidden = x !== v);
+    activeView = v; document.title = v.dataset.title;
+    $$('[data-nav]').forEach(a => a.removeAttribute('aria-current'));
+    const navKey = ORDER.includes(v.dataset.view) ? 'collezioni' : v.dataset.view;
+    const cur = $(`[data-nav="${navKey}"]`); if (cur) cur.setAttribute('aria-current','page');
+    scrollTo(0,0);
+  }
+  nav.classList.remove('open'); burger.setAttribute('aria-expanded', false);
+  if (pendingScroll){ const el = document.getElementById(pendingScroll); pendingScroll = null; requestAnimationFrame(() => el.scrollIntoView()); }
+}
+
+/* ===================== DINAMICHE: reveal, contatori, marquee ===================== */
+const REVEAL = '.band h2, .head p, .intro > div, .facts > div, .sec-list li, .tools a, .mat > div, .steps li, .benefits li, .designers li, .features > div, .prod-grid li, .timeline li, .values li, .aud > div, .chips li, .cta-band a, .fam-list li, .types li, .page-head h1, .page-head .lead, .fam-hero > div:first-child > *';
+const MOVE = '.cat, .fam-card, .sectors .stage3d, .process .stage3d';
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const t = e.target; t.classList.add('in'); io.unobserve(t); if (t.dataset.count) countUp(t); $$('[data-count]', t).forEach(countUp); }), { rootMargin:'0px 0px -8% 0px', threshold:0.08 }) : null;
+function prepReveal(root){
+  if (reduce || !io) return;
+  $$(REVEAL, root).forEach(el => { if (el.classList.contains('rv')) return; el.classList.add('rv'); const sib = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0; el.style.transitionDelay = `${Math.min(sib, 8)*70}ms`; io.observe(el); });
+  $$(MOVE, root).forEach(el => { if (el.classList.contains('rv')) return; el.classList.add('rv','rv-move'); const sib = [...el.parentElement.children].indexOf(el); el.style.transitionDelay = `${Math.min(sib, 6)*90}ms`; io.observe(el); });
+}
+function countUp(el){
+  if (el.dataset.done) return; el.dataset.done = 1;
+  const to = +el.dataset.count, from = to > 1000 ? to - 52 : 0, t0 = performance.now(), dur = 1400;
+  const step = now => { const k = Math.min(1, (now - t0)/dur), e = 1 - Math.pow(1-k, 4); el.textContent = Math.round(from + (to-from)*e); if (k < 1) requestAnimationFrame(step); };
+  if (reduce) el.textContent = to; else requestAnimationFrame(step);
+}
+$$('[data-designer-count]').forEach(e => e.dataset.count = DESIGNERS.length);
+$$('.facts').forEach(f => { if (!io || reduce) return; $$('[data-count]', f).forEach(b => b.textContent = b.dataset.count > 1000 ? b.dataset.count - 52 : 0); });
+
+let mqX = 0, lastY = scrollY, vel = 0;
+const tracks = $$('[data-mq]');
+function mqTick(now){
+  requestAnimationFrame(mqTick);
+  const y = scrollY, d = y - lastY; lastY = y; vel += (d - vel)*0.1;
+  if (reduce) return;
+  tracks.forEach(t => { if (!t.offsetParent) return; const w = t.scrollWidth/2; mqX -= 1.1 + Math.abs(vel)*0.35; if (mqX < -w) mqX += w; t.style.transform = `translate3d(${mqX}px,0,0) skewX(${Math.max(-10, Math.min(10, -vel*0.4))}deg)`; });
+}
+requestAnimationFrame(mqTick);
+
+const wipe = $('#wipe'); let wiping = false;
+function transition(){
+  const name = location.hash.slice(1); const target = views.find(x => x.dataset.view === name) || views[0];
+  if (reduce || target === activeView || wiping || !wipe.animate){ route(); prepReveal(activeView); return; }
+  wiping = true;
+  wipe.animate([{ transform:'translateY(101%)' }, { transform:'translateY(0)' }], { duration:420, easing:'cubic-bezier(.7,0,.3,1)', fill:'forwards' }).finished.then(() => {
+    route(); prepReveal(activeView);
+    return wipe.animate([{ transform:'translateY(0)' }, { transform:'translateY(-101%)' }], { duration:520, delay:120, easing:'cubic-bezier(.7,0,.3,1)', fill:'forwards' }).finished;
+  }).then(() => { wipe.getAnimations().forEach(a => a.cancel()); wiping = false; });
+}
+
+addEventListener('hashchange', transition);
+route(); prepReveal(activeView);
+
+/* ===================== CONTROLLI ===================== */
+let finKey = 'terracotta';
+function paintControls(){
+  $$('[data-swatches]').forEach(w => {
+    if (!w.children.length) Object.entries(FIN).forEach(([k,[n,c]]) => { const b = document.createElement('button'); b.type='button'; b.className='sw'; b.dataset.k=k; b.innerHTML = `<i style="--c:${c}"></i>${n}`; b.onclick = () => { finKey = k; paintControls(); setFinish(k); }; w.appendChild(b); });
+    [...w.children].forEach(b => b.setAttribute('aria-pressed', b.dataset.k===finKey));
+  });
+  $$('[data-cfgs]').forEach(w => {
+    const cfg = w.dataset.cfgs==='softer' ? SOFTER_CFG : TWIST_CFG, scope = w.closest('[data-scope]'), stage = $('.stage3d', scope);
+    if (!w.children.length) Object.entries(cfg).forEach(([k,[n]]) => { const b = document.createElement('button'); b.type='button'; b.dataset.k=k; b.textContent=n;
+      b.onclick = () => { stage.dataset.cfg = k; paintControls(); const inst = instances.get(stage); if (inst && inst.setCfg) inst.setCfg(k); }; w.appendChild(b); });
+    [...w.children].forEach(b => b.setAttribute('aria-pressed', b.dataset.k===stage.dataset.cfg));
+    $('[data-cap]', scope).textContent = cfg[stage.dataset.cfg][1];
+  });
+}
+let setFinish = () => {};
+const instances = new Map();
+paintControls();
+
+/* ===================== WEBGL ===================== */
+let renderer;
+try { if (!window.THREE) throw 0; renderer = new THREE.WebGLRenderer({ canvas: $('#gl'), antialias:true, alpha:true }); }
+catch(e){ document.documentElement.classList.add('no-webgl'); return; }
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.VSMShadowMap;
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.95;
+const pmrem = new THREE.PMREMGenerator(renderer);
+const envTex = THREE.RoomEnvironment ? pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture : null;
+renderer.setScissorTest(true);
+
+const col = h => new THREE.Color(h).convertSRGBToLinear();
+const V = (x,y,z) => new THREE.Vector3(x,y,z);
+const ease = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+const easeOut = t => 1-Math.pow(1-t,3);
+const clamp01 = t => Math.min(1, Math.max(0, t));
+function canvasTex(draw, rx, ry, size=512){ const c = document.createElement('canvas'); c.width = c.height = size; draw(c.getContext('2d'), size); const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rx, ry); return t; }
+const ribTex = canvasTex(g => {
+  g.fillStyle = '#808080'; g.fillRect(0,0,512,512);
+  for (let x=0; x<512; x+=4){ const v = 90 + Math.random()*110; g.fillStyle = `rgb(${v},${v},${v})`; g.fillRect(x,0,2,512); }
+  const d = g.getImageData(0,0,512,512); for (let i=0;i<d.data.length;i+=4){ const n=(Math.random()-.5)*40; d.data[i]+=n; d.data[i+1]+=n; d.data[i+2]+=n; } g.putImageData(d,0,0);
+}, 18, 1);
+const softTex = canvasTex(g => { const d = g.createImageData(512,512); for (let i=0;i<d.data.length;i+=4){ const v = 128 + (Math.random()-.5)*36; d.data[i]=d.data[i+1]=d.data[i+2]=v; d.data[i+3]=255; } g.putImageData(d,0,0); }, 3, 3);
+
+/* materiali condivisi */
+const phys = o => new THREE.MeshPhysicalMaterial(Object.assign({ metalness:0, envMapIntensity:0.9 }, o));
+const fadeMat = phys({ color:col(FIN[finKey][1]), envMapIntensity:0.55, roughness:0.58, clearcoat:0.18, clearcoatRoughness:0.5, bumpMap:ribTex, bumpScale:0.0022, side:THREE.DoubleSide });
+const lampMat = phys({ color:col('#F1ECE2'), emissive:col('#FFE2B0'), emissiveIntensity:0.35, roughness:0.75, transmission:0, bumpMap:ribTex, bumpScale:0.0015, side:THREE.DoubleSide });
+const softMat = phys({ color:col('#D6CAB3'), roughness:0.78, sheen:new THREE.Color(0x6f675a), bumpMap:softTex, bumpScale:0.0015 });
+const twistMat = phys({ color:col('#E8E6E1'), roughness:0.5, clearcoat:0.12, clearcoatRoughness:0.5, bumpMap:softTex, bumpScale:0.001 });
+const velaMat = phys({ color:col('#E4DED1'), roughness:0.62, clearcoat:0.1, bumpMap:softTex, bumpScale:0.001, side:THREE.DoubleSide });
+const brass = phys({ color:col('#B8935A'), roughness:0.28, metalness:1 });
+const stoneTop = phys({ color:col('#5A5C5F'), roughness:0.35, clearcoat:0.3 });
+const vaseLight = phys({ color:col('#E5E1D8'), roughness:0.6, clearcoat:0.15, bumpMap:ribTex, bumpScale:0.002, side:THREE.DoubleSide });
+const vaseDark = phys({ color:col('#47494B'), roughness:0.5, clearcoat:0.2, bumpMap:ribTex, bumpScale:0.002, side:THREE.DoubleSide });
+const plain = (c, r=0.85) => new THREE.MeshStandardMaterial({ color:col(c), roughness:r, envMapIntensity:0.7 });
+const wireMat = new THREE.MeshBasicMaterial({ color:'#7A7A7A', wireframe:true, transparent:true, opacity:0.5 });
+setFinish = k => fadeMat.color.copy(col(FIN[k][1]));
+
+const mesh = (geo, mat) => { const m = new THREE.Mesh(geo, mat); m.castShadow = true; m.receiveShadow = true; return m; };
+const lathe = (pts, seg, ps, pl) => new THREE.LatheGeometry(pts.map(([x,y]) => new THREE.Vector2(x,y)), seg, ps, pl);
+function rbox(w,h,d,r){
+  const s = new THREE.Shape(), iw = w-2*r, ih = h-2*r;
+  s.moveTo(-iw/2,-ih/2); s.lineTo(iw/2,-ih/2); s.lineTo(iw/2,ih/2); s.lineTo(-iw/2,ih/2); s.lineTo(-iw/2,-ih/2);
+  const g = new THREE.ExtrudeGeometry(s, { depth:d-2*r, bevelEnabled:true, bevelThickness:r, bevelSize:r, bevelSegments:7, curveSegments:4 });
+  g.center(); g.computeVertexNormals(); return g;
+}
+const face = (o, tx, tz) => { o.rotation.y = Math.atan2(tx - o.position.x, tz - o.position.z); };
+
+/* ---------- geometrie prodotto ---------- */
+function cupGeo(seg){
+  const g = lathe([[0,0.52],[0.35,0.54],[0.58,0.62],[0.7,0.76],[0.74,0.9],[0.78,0.93],[0.81,0.88],[0.77,0.7],[0.61,0.55],[0.36,0.46],[0.16,0.43],[0,0.42]], seg);
+  const p = g.attributes.position;
+  for (let i=0;i<p.count;i++){ const x=p.getX(i), y=p.getY(i), z=p.getZ(i), r=Math.hypot(x,z);
+    if (y>0.6 && r>0.01){ const t = Math.min(1,(y-0.6)/0.33), back = Math.max(0,-z/r), front = Math.max(0,z/r); p.setY(i, y + t*t*Math.pow(back,1.4)*0.66 - t*front*front*0.1); } }
+  g.computeVertexNormals(); return g;
+}
+const footPts = [[0,0],[0.4,0],[0.42,0.03],[0.3,0.08],[0.17,0.2],[0.13,0.36],[0.16,0.46],[0,0.46]];
+const CUP = cupGeo(112), FOOT = lathe(footPts, 64), CUP_W = cupGeo(36), FOOT_W = lathe(footPts, 24);
+const fadeChair = (mat=fadeMat) => { const g = new THREE.Group(); g.add(mesh(CUP, mat), mesh(FOOT, mat)); return g; };
+const TBASE = lathe([[0,0],[0.32,0],[0.33,0.03],[0.14,0.15],[0.09,0.5],[0.08,0.66],[0,0.66]], 64), TTOP = new THREE.CylinderGeometry(0.48,0.48,0.045,64);
+const fadeTable = () => { const g = new THREE.Group(); const t = mesh(TTOP, fadeMat); t.position.y = 0.68; g.add(mesh(TBASE, fadeMat), t); return g; };
+const STOOL = lathe([[0,0],[0.26,0],[0.27,0.03],[0.13,0.2],[0.11,0.5],[0.22,0.66],[0.24,0.7],[0,0.71]], 64);
+const LAMP = lathe([[0,0],[0.24,0],[0.3,0.06],[0.33,0.18],[0.3,0.32],[0.2,0.42],[0.16,0.47],[0.2,0.5],[0.3,0.53],[0.2,1.95],[0.19,1.97],[0,1.97]], 96);
+function fadeLamp(power=1){ const g = new THREE.Group(); g.add(mesh(LAMP, lampMat)); const l = new THREE.PointLight(0xffd39a, 1.0*power, 5, 2); l.position.y = 1.1; g.add(l); g.userData.light = l; return g; }
+const SEAT = rbox(0.95,0.34,0.95,0.16), BACK = rbox(0.95,0.44,0.3,0.15);
+const softerMod = withBack => { const g = new THREE.Group(); const s = mesh(SEAT, softMat); s.position.y = 0.19; g.add(s); if (withBack){ const b = mesh(BACK, softMat); b.position.set(0,0.55,-0.33); b.rotation.x = -0.1; g.add(b); } return g; };
+const softerTable = () => { const g = new THREE.Group(); const b = mesh(rbox(1.0,0.26,0.68,0.06), softMat); b.position.y = 0.13; const t = mesh(rbox(1.04,0.05,0.72,0.02), stoneTop); t.position.y = 0.285; g.add(b,t); return g; };
+const TR = 1.2, TW = 0.62, TH = 0.44;
+const TWIST_GEO = (() => { const s = new THREE.Shape(), a = Math.PI/2, ri = TR - TW/2, ro = TR + TW/2;
+  s.absarc(0,0,ro,0,a,false); s.absarc(0,0,ri,a,0,true);
+  const g = new THREE.ExtrudeGeometry(s, { depth:TH-0.12, bevelEnabled:true, bevelThickness:0.06, bevelSize:0.06, bevelSegments:6, curveSegments:48 });
+  g.rotateX(Math.PI/2); g.translate(0, TH-0.06, 0); g.computeVertexNormals(); return g; })();
+function twistLayout(turns){
+  let px=0, pz=0, h=0; const out = [];
+  turns.forEach(d => { const nx = -Math.sin(h), nz = Math.cos(h), cx = px + d*TR*nx, cz = pz + d*TR*nz, phi0 = Math.atan2(pz-cz, px-cx);
+    out.push([cx, cz, -(d>0 ? phi0 : phi0 - Math.PI/2)]); h += d*Math.PI/2; const phiE = phi0 + d*Math.PI/2; px = cx + TR*Math.cos(phiE); pz = cz + TR*Math.sin(phiE); });
+  const mx = out.reduce((s,o)=>s+o[0],0)/out.length, mz = out.reduce((s,o)=>s+o[1],0)/out.length;
+  return out.map(([x,z,r]) => [x-mx, z-mz, r]);
+}
+const TWIST_LAYOUT = { onda: twistLayout([1,-1,1,-1]), cerchio: twistLayout([1,1,1,1]), esse: twistLayout([1,1,-1,-1]) };
+const SOFTER_LAYOUT = {
+  lineare:       [[-1.43,-0.45,0],[-0.48,-0.45,0],[0.48,-0.45,0],[1.43,-0.45,0],[-1.43,0.5,0],[1.43,0.5,0],[0,1.15,0]],
+  angolare:      [[-1.43,-0.9,0],[-0.48,-0.9,0],[0.48,-0.9,0],[1.45,0.05,-Math.PI/2],[-1.43,0.05,0],[1.45,1.0,0],[-0.1,0.65,0]],
+  conversazione: [[-0.48,-1.1,0],[0.48,-1.1,0],[-0.48,1.1,Math.PI],[0.48,1.1,Math.PI],[-1.55,0,0],[1.55,0,0],[0,0,0]]
+};
+const VELA_SHELL = (() => { const g = lathe([[0.5,0.3],[0.62,0.45],[0.66,0.75],[0.62,1.0],[0.55,1.06],[0.5,1.0],[0.54,0.75],[0.5,0.5],[0.42,0.42]], 96, 0.75, Math.PI*2-1.5);
+  const p = g.attributes.position; for (let i=0;i<p.count;i++){ const x=p.getX(i), y=p.getY(i), z=p.getZ(i), r=Math.hypot(x,z)||1;
+    if (y>0.44){ const back = (1 - z/r)/2, t=(y-0.44)/0.62; p.setY(i, 0.44 + t*0.62*(0.45+0.65*back) + Math.max(0,x/r)*t*0.12); } }
+  g.computeVertexNormals(); return g; })();
+const velaChair = () => { const g = new THREE.Group(); const c = mesh(rbox(0.86,0.14,0.86,0.07), velaMat); c.position.y = 0.48; g.add(mesh(lathe([[0,0],[0.5,0],[0.55,0.05],[0.56,0.3],[0.5,0.42],[0,0.44]],96), velaMat), mesh(VELA_SHELL, velaMat), c); return g; };
+const velaTable = () => { const g = new THREE.Group(); g.add(mesh(lathe([[0,0],[0.42,0],[0.46,0.04],[0.47,0.34],[0.44,0.38],[0,0.38]],96), velaMat)); return g; };
+const velaLamp = () => { const g = new THREE.Group();
+  g.add(mesh(lathe([[0,0],[0.2,0],[0.22,0.04],[0.07,0.2],[0.04,0.9],[0.05,1.05],[0,1.05]],64), velaMat));
+  const ring = mesh(new THREE.TorusGeometry(0.06,0.025,16,48), brass); ring.rotation.x = Math.PI/2; ring.position.y = 1.0; g.add(ring);
+  g.add(mesh(lathe([[0.18,1.5],[0.36,1.05],[0.34,1.04],[0.16,1.48]],64), velaMat)); return g; };
+const VASE_TALL = lathe([[0,0],[0.3,0],[0.34,0.05],[0.4,0.5],[0.46,1.1],[0.48,1.4],[0.46,1.42],[0.43,1.38],[0.42,1.1],[0.36,0.5],[0.3,0.1],[0,0.1]], 96);
+const VASE_LOW = lathe([[0,0],[0.45,0],[0.52,0.05],[0.66,0.35],[0.7,0.62],[0.67,0.65],[0.63,0.6],[0.6,0.35],[0.46,0.1],[0,0.1]], 96);
+
+/* ---------- scena base ---------- */
+function cyclorama(color){
+  const N = 48, geo = new THREE.PlaneGeometry(80, 1, 1, N), p = geo.attributes.position;
+  for (let i=0;i<=N;i++){
+    const t = i/N; // 0 = top of wall, 1 = front floor
+    let y, z;
+    const wallH = 26, R = 5, back = -12;
+    const L1 = wallH - R, L2 = Math.PI*R/2, L3 = 40;
+    const s = t*(L1+L2+L3);
+    if (s < L1){ y = wallH - s; z = back; }
+    else if (s < L1+L2){ const th = (s-L1)/R; y = R - Math.sin(th)*R; z = back + R - Math.cos(th)*R; }
+    else { y = 0; z = back + R + (s-L1-L2); }
+    for (let j=0;j<2;j++){ const k = i*2+j; p.setY(k, y); p.setZ(k, z); }
+  }
+  geo.computeVertexNormals();
+  const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color:col(color), roughness:1, envMapIntensity:0.5, side:THREE.DoubleSide }));
+  m.receiveShadow = true; return m;
+}
+function baseScene(bg, opts={}){
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(bg);
+  if (envTex && opts.env !== false) scene.environment = envTex;
+  const hemi = new THREE.HemisphereLight(0xffffff, 0xcfcac2, opts.hemi ?? 0.18); scene.add(hemi);
+  const key = new THREE.DirectionalLight(opts.keyColor || 0xfff3e6, opts.key ?? 1.25);
+  key.position.set(...(opts.keyPos || [-4.5, 8, 5])); key.castShadow = true; key.shadow.mapSize.set(2048,2048);
+  const s = opts.shadow || 4; Object.assign(key.shadow.camera, { left:-s, right:s, top:s, bottom:-s, near:0.5, far:40 });
+  key.shadow.radius = opts.radius ?? 9; key.shadow.bias = -0.0006; scene.add(key, key.target);
+  if (opts.backdrop !== false) scene.add(cyclorama(opts.backdrop || bg));
+  return { scene, key, hemi };
+}
+function mover(objs, layout){ return objs.map((m,i) => { const c = layout[i]; m.position.set(c[0],m.position.y,c[1]); m.rotation.y = c[2]; return { from:c.slice(), to:c.slice(), start:-1e9 }; }); }
+function retarget(objs, st, layout, stagger){ const now = performance.now();
+  objs.forEach((m,i) => { const s = st[i]; s.from = [m.position.x, m.position.z, m.rotation.y]; const t = layout[i].slice(); let dr = t[2]-s.from[2]; dr = Math.atan2(Math.sin(dr),Math.cos(dr)); t[2] = s.from[2]+dr; s.to = t; s.start = now + i*stagger; }); }
+function animate(objs, st, now, dur){ st.forEach((s,i) => { const m = objs[i]; const q = ease(clamp01((now-s.start)/dur));
+  m.position.x = s.from[0] + (s.to[0]-s.from[0])*q; m.position.z = s.from[1] + (s.to[1]-s.from[1])*q; m.rotation.y = s.from[2] + (s.to[2]-s.from[2])*q; }); }
+
+/* ---------- tipi di scena ---------- */
+const TYPES = {};
+
+TYPES.hero = (el) => {
+  const { scene, key } = baseScene('#E3DDD3', { key:1.7, keyColor:0xffe6c8, keyPos:[-9, 16, 9], shadow:9, radius:7, hemi:0.45 });
+  const g = new THREE.Group(); g.position.x = 1.4; scene.add(g);
+  const slatM = plain('#333'); const slats = new THREE.Group();
+  for (let i=0;i<22;i++){ const b = new THREE.Mesh(new THREE.BoxGeometry(0.09,0.1,16), slatM); b.position.set(-8+i*0.75, 11, 0); b.castShadow = true; slats.add(b); }
+  slats.rotation.y = 0.5; scene.add(slats);
+  const plinth = mesh(rbox(7.2,0.12,4.2,0.03), plain('#C4BCAE', 0.6)); plinth.position.set(0.5,0.06,-0.1); g.add(plinth);
+  const items = [];
+  const put = (o, x, z, ry) => { o.position.set(x,0.1,z); if (ry !== undefined) o.rotation.y = ry; g.add(o); items.push({ o, home:V(x,0.1,z), rot:o.rotation.y }); return o; };
+  const lamp = put(fadeLamp(0.5), -2.2, -1.2);
+  const t1 = put(fadeTable(), 0.6, 0.1);
+  const chairs = [[-0.45,0.65],[1.7,-0.45],[0.75,1.25]].map(([x,z]) => { const c = fadeChair(); c.position.set(x,0.1,z); face(c,0.6,0.1); return put(c, x, z, c.rotation.y); });
+  const st = put(mesh(STOOL, fadeMat), 2.7, 1.0);
+  const l2 = fadeLamp(0.3); l2.scale.setScalar(0.7); put(l2, 3.1, -1.5);
+  const focus = items.find(i => i.o === chairs[0]);
+  const cup = focus.o.children[0], foot = focus.o.children[1];
+  const FOCUS_POS = V(0.55, 0.1, 0.3);
+  const scope = el.closest('[data-hero-scroll]');
+  const caps = $$('[data-cap]', el), hs = $$('[data-hs]', el), copy = $('.hero-copy', el), bar = $('.hero-progress i', el), cue = $('.scroll-cue', el), finName = $('[data-fin-name]', el);
+  const HS = [V(0, 1.45, -0.55), V(0.62, 0.95, 0.35), V(0.35, 0.05, 0.25)];
+  const K = [
+    [0.00, V(5.4,1.9,8.6),  V(1.1,0.85,0)],
+    [0.22, V(3.4,2.6,7.6),  V(1.6,0.8,0.2)],
+    [0.45, V(-1.2,1.7,6.4), V(1.95,0.75,0.3)],
+    [0.62, V(4.8,1.7,5.6),  V(1.95,0.85,0.3)],
+    [0.80, V(4.6,2.5,6.4),  V(1.95,1.1,0.3)],
+    [1.00, V(5.6,2.1,8.0),  V(1.6,0.8,0.1)]
+  ];
+  const camAt = p => { for (let i=1;i<K.length;i++) if (p <= K[i][0]) { const a = K[i-1], b = K[i], e = ease((p-a[0])/(b[0]-a[0])); return { pos:a[1].clone().lerp(b[1], e), tgt:a[2].clone().lerp(b[2], e) }; } return { pos:K[K.length-1][1].clone(), tgt:K[K.length-1][2].clone() }; };
+  const easeOutBounce = x => { const n=7.5625, d=2.75; if (x<1/d) return n*x*x; if (x<2/d) return n*(x-=1.5/d)*x+.75; if (x<2.5/d) return n*(x-=2.25/d)*x+.9375; return n*(x-=2.625/d)*x+.984375; };
+  const finKeys = Object.keys(FIN); let cycling = false, lastCap = -1, P = 0;
+  const t0 = performance.now(); const tmp = new THREE.Vector3();
+  lampMat.emissiveIntensity = reduce ? 0.35 : 0;
+  return { scene, base:camAt(0), wide:true,
+    update(now, inst, r, dt){
+      const sr = scope.getBoundingClientRect(); const total = Math.max(1, sr.height - (innerHeight - top0));
+      const raw = clamp01(-(sr.top - top0) / total);
+      P += (raw - P) * (reduce ? 1 : Math.min(1, dt*4.5)); const p = P;
+      const it = (now - t0)/1000;
+      const sink = ease(clamp01((p-0.3)/0.16)) * (1 - ease(clamp01((p-0.86)/0.1)));
+      items.forEach((s,i) => {
+        const k = reduce ? 1 : clamp01((it - 0.3 - i*0.13)/1.0), drop = (1 - easeOutBounce(k))*3;
+        if (s === focus){
+          s.o.position.copy(s.home).lerp(FOCUS_POS, sink); s.o.position.y += drop;
+          s.o.rotation.y = s.rot + (0.75 - s.rot)*sink + sink*(p-0.3)*2.2;
+        } else { s.o.position.copy(s.home); s.o.position.y += drop - sink*2.4; s.o.visible = sink < 0.99; }
+      });
+      lampMat.emissiveIntensity = Math.max(lampMat.emissiveIntensity, reduce ? 0.35 : 0.35*easeOut(clamp01((it-1.6)/1.2)));
+      const ex = ease(clamp01((p-0.6)/0.1)) * (1 - ease(clamp01((p-0.79)/0.07)));
+      cup.position.y = ex*0.9; cup.rotation.x = -ex*0.12; cup.rotation.z = ex*0.06;
+      inst.ex = ex;
+      if (p > 0.84){ cycling = true; const f = ((p-0.84)/0.16)*(finKeys.length-0.001), i = Math.floor(f), j = Math.min(finKeys.length-1, i+1), u = ease(clamp01((f-i-0.5)*3+0.5));
+        fadeMat.color.copy(col(FIN[finKeys[i]][1])).lerp(col(FIN[finKeys[j]][1]), u); const nm = FIN[finKeys[u > 0.5 ? j : i]][0]; if (finName.textContent !== nm) finName.textContent = nm; }
+      else if (cycling){ cycling = false; fadeMat.color.copy(col(FIN[finKey][1])); }
+      const ka = 2.36 + p*1.3; key.position.set(Math.cos(ka)*12.7, 16, Math.sin(ka)*-12.7); slats.rotation.y = 0.5 + p*0.9;
+      const c = camAt(p); inst.base = c;
+      inst.mobileShift = 1 - clamp01((p-0.04)/0.12);
+      const sway = reduce ? 0 : Math.sin(now/11000)*0.25;
+      inst.offset.set(sway + inst.px*0.35, inst.py*0.12, 0);
+      const fade = clamp01((p-0.03)/0.12);
+      copy.style.opacity = 1 - fade; copy.style.transform = `translateY(${-fade*60}px)`; copy.style.visibility = fade > 0.98 ? 'hidden' : 'visible';
+      cue.style.opacity = 1 - clamp01(p/0.05);
+      const capIdx = p < 0.18 ? -1 : p < 0.45 ? 0 : p < 0.6 ? 1 : p < 0.82 ? 2 : 3;
+      if (capIdx !== lastCap){ lastCap = capIdx; caps.forEach((c,i) => c.classList.toggle('on', i === capIdx)); }
+      bar.style.transform = `scaleX(${p})`;
+    },
+    post(cam, r, inst){
+      hs.forEach((h,i) => {
+        const o = i === 2 ? foot : cup; tmp.copy(HS[i]); o.localToWorld(tmp); tmp.project(cam);
+        const x = (tmp.x+1)/2*r.width, y = (1-tmp.y)/2*r.height;
+        h.style.transform = `translate(${x-7}px, ${y-7}px)`;
+        h.style.opacity = inst.ex || 0;
+      });
+    } };
+};
+
+TYPES.chair = () => { const { scene } = baseScene('#E9E7E3'); const c = fadeChair(); scene.add(c);
+  return { scene, spinObj:c, auto:0.25, base:{ pos:V(2.4,1.7,3.6), tgt:V(0,0.62,0) } }; };
+TYPES.tables = () => { const { scene } = baseScene('#E9E7E3'); const g = new THREE.Group(); scene.add(g);
+  const t = fadeTable(); g.add(t); const s1 = mesh(STOOL, fadeMat); s1.position.set(0.95,0,0.35); const s2 = mesh(STOOL, fadeMat); s2.position.set(-0.85,0,0.5); s2.scale.setScalar(0.8); g.add(s1, s2);
+  return { scene, spinObj:g, auto:0.18, base:{ pos:V(2.6,2.2,3.8), tgt:V(0.05,0.45,0.2) } }; };
+TYPES.lamp = () => { const { scene, hemi, key } = baseScene('#2A2B2D', { hemi:0.05, key:0.35 });
+  const l = fadeLamp(1.6); scene.add(l); lampMat.emissiveIntensity = 0.35; const t = mesh(new THREE.CylinderGeometry(0.16,0.2,0.4,48), lampMat); t.position.set(0.75,0.2,0.4); scene.add(t);
+  const pl = new THREE.PointLight(0xffd39a, 0.6, 2.5, 2); pl.position.set(0.75,0.35,0.4); scene.add(pl);
+  return { scene, spinObj:l, auto:0.15, base:{ pos:V(2.2,1.6,4.6), tgt:V(0.25,0.95,0) } }; };
+TYPES.vases = () => { const { scene } = baseScene('#E9E7E3'); const g = new THREE.Group(); scene.add(g);
+  const a = mesh(VASE_TALL, vaseLight); a.position.set(-0.45,0,0); const b = mesh(VASE_LOW, vaseDark); b.position.set(0.6,0,0.35); b.scale.setScalar(0.85); g.add(a,b);
+  return { scene, spinObj:g, auto:0.15, base:{ pos:V(2.2,1.8,3.9), tgt:V(0.05,0.65,0.1) } }; };
+
+TYPES.softer = (el) => { const { scene } = baseScene('#E9E7E3', { shadow:5 }); const g = new THREE.Group(); scene.add(g);
+  const objs = [1,1,1,1,0,0,2].map(k => { const m = k===2 ? softerTable() : softerMod(k===1); g.add(m); return m; });
+  const st = mover(objs, SOFTER_LAYOUT[el.dataset.cfg || 'lineare']);
+  return { scene, spinObj:g, auto: el.dataset.drag ? 0 : 0.12, base:{ pos:V(4.4,4.6,6.2), tgt:V(0.1,0.2,0.1) },
+    setCfg:k => retarget(objs, st, SOFTER_LAYOUT[k], 70), update(now){ animate(objs, st, now, 900); } }; };
+TYPES.twist = (el) => { const { scene } = baseScene('#E9E7E3', { shadow:5 }); const g = new THREE.Group(); scene.add(g);
+  const objs = [0,1,2,3].map(() => { const m = mesh(TWIST_GEO, twistMat); g.add(m); return m; });
+  const st = mover(objs, TWIST_LAYOUT[el.dataset.cfg || 'onda']);
+  return { scene, spinObj:g, auto: el.dataset.drag ? 0 : 0.12, base:{ pos:V(3.6,5.4,6.4), tgt:V(0,0.1,0) },
+    setCfg:k => retarget(objs, st, TWIST_LAYOUT[k], 90), update(now){ animate(objs, st, now, 1000); } }; };
+TYPES.fade = (el) => { const { scene } = baseScene('#E9E7E3', { shadow:4 }); const g = new THREE.Group(); scene.add(g);
+  const l = fadeLamp(0.8); l.position.set(-1.5,0,-0.7); const t = fadeTable(); t.position.set(0.4,0,0);
+  const c1 = fadeChair(); c1.position.set(-0.55,0,0.3); face(c1,0.4,0); const c2 = fadeChair(); c2.position.set(1.3,0,-0.45); face(c2,0.4,0);
+  const s = mesh(STOOL, fadeMat); s.position.set(1.5,0,0.9); g.add(l,t,c1,c2,s);
+  return { scene, spinObj:g, auto: el.dataset.drag ? 0 : 0.1, base:{ pos:V(3.2,2.4,6.4), tgt:V(0,0.8,0) } }; };
+TYPES.vela = (el) => { const { scene } = baseScene('#E9E7E3', { shadow:4 }); const g = new THREE.Group(); scene.add(g);
+  const c1 = velaChair(); c1.position.set(-0.85,0,0.2); const c2 = velaChair(); c2.position.set(0.95,0,-0.15); const t = velaTable(); t.position.set(0.05,0,0.1);
+  face(c1,0.05,0.6); face(c2,0.05,0.6); const l = velaLamp(); l.position.set(-1.85,0,-0.85); g.add(c1,c2,t,l);
+  return { scene, spinObj:g, auto: el.dataset.drag ? 0 : 0.1, base:{ pos:V(1.6,2.3,6.4), tgt:V(-0.1,0.7,0) } }; };
+TYPES.pro = () => { const { scene } = baseScene('#E9E7E3'); const g = new THREE.Group(); scene.add(g);
+  const a = fadeChair(); a.position.x = -0.95; const b = new THREE.Group(); b.add(new THREE.Mesh(CUP_W, wireMat), new THREE.Mesh(FOOT_W, wireMat)); b.position.x = 0.95; g.add(a,b);
+  return { scene, auto:0, base:{ pos:V(0,2.0,6.2), tgt:V(0,0.7,0) }, update(now, inst){ const r = (reduce ? 0.6 : now/1000*0.22) + inst.spin; a.rotation.y = b.rotation.y = r; } }; };
+
+TYPES.terrace = () => { const { scene } = baseScene('#E9E7E3', { shadow:7, radius:6 }); const terr = new THREE.Group(); scene.add(terr); const built = [];
+  const add = (o,a,b,axis) => { o.userData = { a,b,axis,base:o.scale.x }; terr.add(o); built.push(o); };
+  const bb = (w,h,d,m,x,y,z) => { const geo = new THREE.BoxGeometry(w,h,d); geo.translate(0,h/2,0); const o = mesh(geo,m); o.position.set(x,y,z); return o; };
+  const woods = ['#A98A68','#B0926F','#A3845F'].map(plain);
+  for (let i=0;i<13;i++) add(bb(7,0.08,0.36,woods[i%3],0,0,-2.4+i*0.4), i*0.012, 0.12+i*0.012, 'x');
+  add(bb(7,0.55,0.25,plain('#E6E3DD'),0,0.08,-2.75), 0.22, 0.34, 'y');
+  [[3.3,2.2],[3.3,-2.4],[-3.3,2.2],[-3.3,-2.4]].forEach(([x,z],i) => add(bb(0.1,2.7,0.1,plain('#2F3031'),x,0.08,z), 0.3+i*0.03, 0.44+i*0.03, 'y'));
+  [-2.4,2.2].forEach((z,i) => add(bb(6.7,0.12,0.1,plain('#2F3031'),0,2.72,z), 0.42+i*0.03, 0.54+i*0.03, 'x'));
+  const sg = new THREE.PlaneGeometry(6.6,4.4,80,1); sg.rotateX(-Math.PI/2); { const p = sg.attributes.position; for (let i=0;i<p.count;i++) p.setY(i, Math.sin(p.getX(i)*2.4)*0.11); sg.computeVertexNormals(); }
+  const sail = mesh(sg, new THREE.MeshStandardMaterial({ color:col('#F6F4EF'), roughness:0.95, side:THREE.DoubleSide })); sail.position.set(0,2.84,-0.1); sail.receiveShadow = false; add(sail, 0.5, 0.68, 'x');
+  [[-1.3,0.5],[1.4,-0.6]].forEach(([x,z],k) => { const t = fadeTable(); t.position.set(x,0.08,z); add(t, 0.62+k*0.06, 0.78+k*0.06, 'all');
+    [[x-0.7,z-0.6],[x+0.75,z+0.55]].forEach(([cx,cz],j) => { const c = fadeChair(); c.position.set(cx,0.08,cz); face(c,x,z); add(c, 0.66+k*0.06+j*0.04, 0.84+k*0.06+j*0.04, 'all'); }); });
+  const l1 = fadeLamp(0.6); l1.position.set(-2.7,0.08,-1.9); add(l1, 0.8, 0.96, 'all');
+  const m = softerMod(true); m.position.set(2.4,0.08,1.4); m.rotation.y = -0.6; add(m, 0.86, 1, 'all');
+  let p = 0;
+  return { scene, base:{ pos:V(8.5,5.2,10.5), tgt:V(0.2,0.9,0) }, update(now, inst, rect, dt){
+    const target = reduce ? 1 : clamp01((innerHeight*0.95 - (rect.top + top0)) / (rect.height + innerHeight*0.25) * 1.35);
+    p += (target - p) * Math.min(1, dt*3.5);
+    built.forEach(o => { const { a, b, axis, base } = o.userData; const s = clamp01((p-a)/(b-a)), e = easeOut(s), v = Math.max(e,0.001); o.visible = s > 0.001;
+      if (axis==='x') o.scale.set(v,1,1); else if (axis==='y') o.scale.set(1,v,1); else { o.scale.setScalar(base*(0.85+0.15*e)); o.position.y = 0.08 + (1-e)*0.25; } });
+    inst.offset.set(Math.sin(p*1.2)*-2.5, 0, 0);
+  } };
+};
+
+TYPES.process = (el) => {
+  const { scene } = baseScene('#1B1C1E', { hemi:0.25, key:1.0, backdrop:'#1F2022' });
+  const oven = new THREE.PointLight(0xff7a2a, 0, 8, 2); oven.position.set(0,2.6,2.2); scene.add(oven);
+  const cool = new THREE.PointLight(0x7fb2ff, 0, 8, 2); cool.position.set(-2,2.4,2); scene.add(cool);
+  const rig = new THREE.Group(); rig.position.y = 1.35; scene.add(rig);
+  const procMat = fadeMat.clone(); procMat.transparent = true; procMat.opacity = 0;
+  const chair = fadeChair(procMat); chair.position.y = -0.82; chair.scale.setScalar(0.95); rig.add(chair);
+  const shellMat = new THREE.MeshStandardMaterial({ color:col('#9AA0A6'), metalness:0.7, roughness:0.35, transparent:true, opacity:0.22, depthWrite:false, side:THREE.DoubleSide, emissive:col('#FF6A1A'), emissiveIntensity:0 });
+  const edgeMat = new THREE.LineBasicMaterial({ color:'#DCED3B', transparent:true, opacity:0.9 });
+  const half = (y) => { const g = new THREE.Group(); const geo = new THREE.BoxGeometry(1.9,0.92,1.9); g.add(new THREE.Mesh(geo, shellMat)); g.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo), edgeMat)); g.position.y = y; return g; };
+  const top = half(0.46), bot = half(-0.46); rig.add(top, bot);
+  const N = 1400, src = [CUP, FOOT], pos = new Float32Array(N*3), from = [], to = [], drop = [];
+  for (let i=0;i<N;i++){
+    const geo = src[i < N*0.82 ? 0 : 1].attributes.position, j = Math.floor(Math.random()*geo.count);
+    to.push([geo.getX(j)*0.95, geo.getY(j)*0.95 - 0.82, geo.getZ(j)*0.95]);
+    from.push([(Math.random()-.5)*1.5, -0.86 + Math.random()*0.18, (Math.random()-.5)*1.5]);
+    drop.push([(Math.random()-.5)*0.3, 1.9 + Math.random()*0.5, (Math.random()-.5)*0.3, Math.random()]);
+  }
+  const pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  const pm = new THREE.PointsMaterial({ color:'#D8C9B0', size:0.03, transparent:true, opacity:1 });
+  const pts = new THREE.Points(pg, pm); rig.add(pts);
+  const scope = el.closest('[data-scope]'), btns = scope ? $$('[data-step]', scope) : [];
+  let T = 0, lastStep = -1;
+  btns.forEach(b => b.addEventListener('click', () => { T = +b.dataset.step * 4; }));
+  return { scene, base:{ pos:V(3.4,2.8,5.6), tgt:V(0,1.2,0) }, update(now, inst, rect, dt){
+    T = (T + dt*(reduce ? 0 : 0.85)) % 16; if (reduce && T % 4 < 3.5) T = Math.floor(T/4)*4 + 3.5;
+    const step = Math.floor(T/4), u = (T%4)/4;
+    if (step !== lastStep){ lastStep = step; btns.forEach(b => b.toggleAttribute('aria-current', +b.dataset.step===step)); btns.forEach(b => { if (+b.dataset.step===step) b.setAttribute('aria-current','step'); }); }
+    let rx = 0, rz = 0, topY = 0.46, botY = -0.46, shellOp = 0.22, chairOp = 0, pOp = 0, heat = 0, chill = 0, spinY = 0;
+    const a = pos;
+    if (step === 0){
+      topY = 0.46 + (1 - ease(clamp01((u-0.55)/0.4)))*1.1;
+      pOp = 1;
+      for (let i=0;i<N;i++){ const d = drop[i], f = from[i], k = ease(clamp01((u*1.6 - d[3]*0.6))); a[i*3] = d[0]+(f[0]-d[0])*k; a[i*3+1] = d[1]+(f[1]-d[1])*k; a[i*3+2] = d[2]+(f[2]-d[2])*k; }
+    } else if (step === 1){
+      rx = ease(u)*Math.PI*2; rz = ease(u)*Math.PI*2; heat = Math.sin(u*Math.PI)*0.9 + (u>0.5 ? 0.3 : 0);
+      pOp = 1 - clamp01((u-0.7)/0.3); chairOp = clamp01((u-0.35)/0.6);
+      for (let i=0;i<N;i++){ const f = from[i], t = to[i], k = ease(clamp01(u*1.3)); a[i*3] = f[0]+(t[0]-f[0])*k; a[i*3+1] = f[1]+(t[1]-f[1])*k; a[i*3+2] = f[2]+(t[2]-f[2])*k; }
+    } else if (step === 2){
+      rx = ease(u)*Math.PI*2; heat = 0.3*(1-u); chill = Math.sin(u*Math.PI); chairOp = 1;
+    } else {
+      const k = ease(clamp01(u*1.4)); topY = 0.46 + k*1.5; botY = -0.46 - k*0.05; shellOp = 0.22*(1 - k*0.7); chairOp = 1; spinY = ease(u)*Math.PI*0.8;
+    }
+    pg.attributes.position.needsUpdate = true; pm.opacity = pOp; pts.visible = pOp > 0.01;
+    rig.rotation.set(rx, 0, rz); top.position.y = topY; bot.position.y = botY;
+    shellMat.opacity = shellOp; edgeMat.opacity = 0.9*(shellOp/0.22); shellMat.emissiveIntensity = heat*0.8;
+    procMat.opacity = chairOp; procMat.depthWrite = chairOp > 0.95; procMat.color.copy(fadeMat.color);
+    chair.rotation.y = spinY; oven.intensity = heat*2.2; cool.intensity = chill*1.6;
+  } };
+};
+
+/* ===================== MOTORE MULTI-VIEWPORT ===================== */
+const cam = new THREE.PerspectiveCamera(30, 1, 0.1, 200);
+function createInst(el){
+  const def = TYPES[el.dataset.type](el);
+  const inst = Object.assign({ el, spin:0, spinT:0, px:0, py:0, hover:0, hoverT:0, extra:0, mobileShift:1, offset:new THREE.Vector3() }, def);
+  const host = el.closest('a') || (el.dataset.drag !== undefined ? el : null);
+  if (host && !def.wide){ host.addEventListener('pointerenter', () => inst.hoverT = 1); host.addEventListener('pointerleave', () => inst.hoverT = 0); host.addEventListener('focusin', () => inst.hoverT = 1); host.addEventListener('focusout', () => inst.hoverT = 0); }
+  instances.set(el, inst);
+  if (el.dataset.drag !== undefined){
+    let x0 = null;
+    el.addEventListener('pointerdown', e => { if (e.target.closest('button')) return; x0 = e.clientX; el.setPointerCapture(e.pointerId); });
+    el.addEventListener('pointermove', e => { if (x0 === null) return; inst.spinT += (e.clientX - x0)*0.008; x0 = e.clientX; });
+    const end = () => x0 = null; el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
+    $$('[data-rot]', el).forEach(b => b.addEventListener('click', () => inst.spinT += Math.PI/4 * +b.dataset.rot));
+  }
+  if (def.wide) el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); inst.px = (e.clientX - r.left)/r.width - 0.5; inst.py = (e.clientY - r.top)/r.height - 0.5; });
+  return inst;
+}
+const glEl = $('#gl'); let top0 = 0;
+function resize(){ const nb = Math.round(nav.getBoundingClientRect().bottom); document.documentElement.style.setProperty('--navh', nb + 'px'); top0 = nb; renderer.setSize(innerWidth, Math.max(1, innerHeight - nb), false); }
+addEventListener('resize', resize); resize();
+
+let last = performance.now();
+function frame(now){
+  requestAnimationFrame(frame);
+  const dt = Math.min((now-last)/1000, 0.05); last = now;
+  const H = innerHeight - top0, W = innerWidth;
+  renderer.setScissorTest(false); renderer.setClearColor(0x000000, 0); renderer.clear(); renderer.setScissorTest(true);
+  if (!activeView) return;
+  for (const el of $$('.stage3d', activeView)){
+    const rb = el.getBoundingClientRect(); const r = { left:rb.left, right:rb.right, width:rb.width, height:rb.height, top:rb.top - top0, bottom:rb.bottom - top0 };
+    if (r.bottom < 0 || r.top > H || r.width < 2 || r.height < 2) continue;
+    const inst = instances.get(el) || createInst(el);
+    inst.spin += (inst.spinT - inst.spin) * Math.min(1, dt*6);
+    inst.hover += (inst.hoverT - inst.hover) * Math.min(1, dt*5);
+    if (!reduce) inst.extra += dt * inst.hover * 1.4;
+    if (inst.update) inst.update(now, inst, r, dt);
+    if (inst.spinObj) inst.spinObj.rotation.y = inst.spin + inst.extra + (reduce ? 0 : now/1000*(inst.auto||0));
+    const aspect = r.width / r.height;
+    cam.aspect = aspect; cam.fov = 21;
+    const b = inst.base, dir = b.pos.clone().sub(b.tgt);
+    const fit = inst.wide ? (aspect < 1 ? 1.15/aspect : 1) : (aspect < 1.1 ? 1.1/aspect : 1);
+    cam.position.copy(b.tgt).add(dir.multiplyScalar(fit*1.42*(1 - 0.13*inst.hover))).add(inst.offset);
+    cam.lookAt(b.tgt.clone().add(inst.wide && aspect < 1 ? V(0.8,2.5,0).multiplyScalar(inst.mobileShift) : V(0,0,0)).add(inst.offset.clone().multiplyScalar(0.6)));
+    if (inst.post){ cam.clearViewOffset(); cam.updateProjectionMatrix(); cam.updateMatrixWorld(); inst.post(cam, r, inst); }
+    const vx = Math.max(0, r.left), vt = Math.max(0, r.top), vw = Math.min(W, r.right) - vx, vh = Math.min(H, r.bottom) - vt;
+    if (vw < 1 || vh < 1) continue;
+    cam.setViewOffset(r.width, r.height, vx - r.left, vt - r.top, vw, vh);
+    cam.updateProjectionMatrix();
+    renderer.setViewport(vx, H - vt - vh, vw, vh);
+    renderer.setScissor(vx, H - vt - vh, vw, vh);
+    renderer.render(inst.scene, cam);
+  }
+}
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
